@@ -45,6 +45,15 @@ const ADMIN_EPOST = (process.env.ADMIN_EPOST || "admin@halvtime.no").toLowerCase
 const ADMIN_PASSORD = process.env.ADMIN_PASSORD || "halvtime567";
 
 app.use(express.json());
+
+// Render (og de fleste skytjenester) kjører appen bak en proxy som
+// håndterer HTTPS. Express må stole på den proxyen, ellers tror den at
+// forbindelsen er usikker og dropper innloggingscookien. Dette er den
+// vanligste grunnen til at "innlogging ikke henger med" i produksjon.
+app.set("trust proxy", 1);
+
+const I_PRODUKSJON = process.env.NODE_ENV === "production";
+
 app.use(
   session({
     name: "halvtime.sid",
@@ -54,7 +63,7 @@ app.use(
     cookie: {
       httpOnly: true,
       sameSite: "lax",
-      secure: process.env.NODE_ENV === "production",
+      secure: I_PRODUKSJON,
       maxAge: 1000 * 60 * 60 * 24 * 30,
     },
   })

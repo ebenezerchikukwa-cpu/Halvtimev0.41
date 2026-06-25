@@ -1,0 +1,19 @@
+# render.yaml — gjør at Render setter opp tjenesten riktig automatisk.
+# Render leser denne fila og fyller inn build-/start-kommando og
+# miljøvariabler, så man slipper å gjøre det for hånd.
+services:
+  - type: web
+    name: halvtime
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: node server.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: SESSION_SECRET
+        generateValue: true
+      - key: ADMIN_EPOST
+        value: admin@halvtime.no
+      - key: ADMIN_PASSORD
+        value: halvtime567

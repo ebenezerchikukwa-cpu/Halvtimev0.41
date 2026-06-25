@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="no">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bli creator — HALVTIME</title>
+  <meta name="description" content="Send en forespørsel og bli creator hos HALVTIME. Fortell oss hva du lager og hvor du legger det ut." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <div class="cornermark"><div class="wrap"><a class="brandstamp" href="index.html">HALVTIME<sup>TM</sup></a></div></div>
+
+  <header class="subhead">
+    <div class="wrap">
+      <a class="subhead__brand" href="index.html">HALVTIME<sup>TM</sup></a>
+      <nav aria-label="Hovedmeny">
+        <a href="index.html#kreatorer" aria-current="page" style="border-bottom: 2px solid var(--red); padding-bottom: 3px;">For creators</a>
+        <a href="bedrifter.html">For bedrifter</a>
+        <a href="kontakt.html">Kontakt</a>
+        <a class="login" href="minside.html">Min side</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="page-top">
+      <p class="eyebrow">For creators</p>
+      <h1>Bli creator</h1>
+      <p class="lede">
+        Du trenger ingen konto for å sende inn. Fyll ut under, så tar vi kontakt på mail
+        eller telefon når vi har et oppdrag som passer deg.
+      </p>
+    </div>
+
+    <section style="padding: clamp(28px, 5vw, 48px) 0; max-width: 640px;">
+      <div class="tearout">
+        <span class="tearout__label">Forespørsel</span>
+        <h2>Om deg og det du lager</h2>
+
+        <div id="forespoersel-melding" class="form-msg" role="alert"></div>
+
+        <form id="form-forespoersel">
+          <div class="field-row field-row--2">
+            <div class="field">
+              <label for="f-navn">Navn</label>
+              <input id="f-navn" type="text" required autocomplete="name" />
+            </div>
+            <div class="field">
+              <label for="f-epost">E-post</label>
+              <input id="f-epost" type="email" required autocomplete="email" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="f-telefon">Telefon</label>
+            <input id="f-telefon" type="tel" required autocomplete="tel" placeholder="F.eks. 412 34 567" />
+          </div>
+
+          <div class="field">
+            <label>Hva slags content lager du?</label>
+            <p class="hint" style="margin: 0 0 10px;">Velg alle som passer. Trykk igjen for å fjerne.</p>
+            <div id="nisjevelger"></div>
+          </div>
+
+          <div class="field-row field-row--2">
+            <div class="field">
+              <label for="f-tiktok">TikTok-brukernavn</label>
+              <input id="f-tiktok" type="text" placeholder="@brukernavn" />
+            </div>
+            <div class="field">
+              <label for="f-instagram">Instagram-brukernavn</label>
+              <input id="f-instagram" type="text" placeholder="@brukernavn" />
+            </div>
+          </div>
+
+          <div class="field-row field-row--2">
+            <div class="field">
+              <label for="f-snapchat">Snapchat-brukernavn</label>
+              <input id="f-snapchat" type="text" placeholder="@brukernavn" />
+            </div>
+            <div class="field">
+              <label for="f-youtube">YouTube-kanal</label>
+              <input id="f-youtube" type="text" placeholder="Kanalnavn eller lenke" />
+            </div>
+          </div>
+          <p class="hint" style="margin: -8px 0 18px;">Fyll inn minst én av plattformene over.</p>
+
+          <div class="field">
+            <label for="f-følgere">Følgere / rekkevidde <span style="text-transform:none; letter-spacing:0;">(valgfritt)</span></label>
+            <input id="f-følgere" type="text" placeholder="F.eks. 8 200 på TikTok, 3 400 på Instagram" />
+          </div>
+
+          <div class="field">
+            <label for="f-melding">Noe mer vi bør vite? <span style="text-transform:none; letter-spacing:0;">(valgfritt)</span></label>
+            <textarea id="f-melding" rows="4" placeholder="Tidligere samarbeid, hva du har lyst til å lage, og sånt."></textarea>
+          </div>
+
+          <button class="btn btn--red btn--block" type="submit">Send forespørsel</button>
+        </form>
+
+        <div id="forespoersel-suksess" class="form-success">
+          <p class="eyebrow" style="margin-bottom: 8px;">Mottatt</p>
+          <p style="color: var(--ink-soft); margin: 0 0 16px;">
+            Takk! Vi har fått forespørselen din, og tar kontakt når vi har et oppdrag som passer.
+          </p>
+          <a class="btn btn--ghost" href="index.html">Tilbake til forsiden</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="sitefoot">
+    <div class="footstamp"><a class="brandstamp" href="index.html">HALVTIME<sup>TM</sup></a></div>
+    <hr class="rule rule--soft" />
+    <div class="wrap footer-meta">
+      <span>HALVTIME™ — Oslo, 2026</span>
+      <a href="kontakt.html">Kontakt</a>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/nisjevelger.js"></script>
+  <script src="js/apply.js"></script>
+</body>
+</html>

@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="no">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Admin — HALVTIME</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <header class="subhead">
+    <div class="wrap">
+      <a class="subhead__brand" href="index.html">HALVTIME<sup>TM</sup></a>
+      <nav aria-label="Hovedmeny">
+        <a href="index.html">Til forsiden</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+
+    <div id="admin-logg-inn" class="page-top">
+      <p class="eyebrow">Admin</p>
+      <h1>Logg inn</h1>
+      <p class="lede">Kun for HALVTIME-teamet.</p>
+
+      <div class="tearout" style="max-width: 420px; margin-top: 28px;">
+        <span class="tearout__label">Adminpanel</span>
+        <h2>Skriv inn passordet</h2>
+
+        <div id="admin-logg-inn-melding" class="form-msg" role="alert"></div>
+
+        <form id="form-admin-logg-inn">
+          <div class="field">
+            <label for="admin-passord">Passord</label>
+            <input id="admin-passord" type="password" required autocomplete="current-password" />
+          </div>
+          <button class="btn btn--block" type="submit">Logg inn</button>
+        </form>
+      </div>
+    </div>
+
+    <div id="admin-innhold" style="display: none;">
+      <div class="appbar">
+        <span class="appbar__brand" style="font-size: 18px;">Administrer HALVTIME</span>
+        <div class="appbar__user">
+          <button id="admin-logg-ut" type="button">Logg ut</button>
+        </div>
+      </div>
+
+      <!-- ============ STATISTIKK ============ -->
+      <section class="admin-section">
+        <h2>Statistikk</h2>
+
+        <div class="statgrid">
+          <div class="statcard">
+            <div class="num" id="stat-kreatorer">0</div>
+            <div class="label">Creator-innlogginger</div>
+          </div>
+          <div class="statcard">
+            <div class="num" id="stat-kreator-forespoersler">0</div>
+            <div class="label">Creator-forespørsler</div>
+          </div>
+          <div class="statcard">
+            <div class="num" id="stat-bedrift-forespoersler">0</div>
+            <div class="label">Bedriftsforespørsler</div>
+          </div>
+        </div>
+
+        <div class="admin-group">
+          <h3>Nisjer — det creatorene lager</h3>
+          <div class="statbars" id="statbar-kreator"></div>
+        </div>
+
+        <div class="admin-group">
+          <h3>Nisjer — det bedriftene er ute etter</h3>
+          <div class="statbars" id="statbar-bedrift"></div>
+        </div>
+      </section>
+
+      <!-- ============ INNSENDINGER ============ -->
+      <section class="admin-section">
+        <h2>Innsendinger</h2>
+        <p class="lede" style="margin-bottom: 24px;">
+          Last ned som CSV og åpne rett i Excel — eller se de siste innsendingene i listene under.
+        </p>
+
+        <div class="admin-group">
+          <h3>Creator-forespørsler</h3>
+          <div class="admin-toolbar">
+            <a class="btn btn--ghost" href="/api/admin/eksport/kreatorer.csv">Last ned som CSV →</a>
+          </div>
+          <div class="admin-table-wrap">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Sendt</th><th>Navn</th><th>E-post</th><th>Telefon</th><th>Nisjer</th>
+                  <th>TikTok</th><th>Instagram</th><th>Snapchat</th><th>YouTube</th>
+                  <th>Følgere</th><th>Melding</th>
+                </tr>
+              </thead>
+              <tbody id="tabell-kreatorer"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="admin-group">
+          <h3>Bedriftsforespørsler</h3>
+          <div class="admin-toolbar">
+            <a class="btn btn--ghost" href="/api/admin/eksport/bedrifter.csv">Last ned som CSV →</a>
+          </div>
+          <div class="admin-table-wrap">
+            <table class="admin-table">
+              <thead>
+                <tr><th>Sendt</th><th>Bedrift</th><th>Kontaktperson</th><th>E-post</th><th>Telefon</th><th>Ønsket content</th><th>Melding</th></tr>
+              </thead>
+              <tbody id="tabell-bedrifter"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ MIN SIDE-TILGANGER ============ -->
+      <section class="admin-section">
+        <h2>Min side-tilganger</h2>
+        <p class="lede" style="margin-bottom: 24px;">
+          Opprett en innlogging for en creator du har koblet på et oppdrag. La kode-feltet stå
+          tomt, så lager systemet en tilfeldig kode du kan sende videre på mail. Creatoren logger
+          inn på Min side med e-post og kode.
+        </p>
+
+        <div class="admin-group">
+          <h3>Ny innlogging</h3>
+          <div id="konto-melding" class="form-msg" role="alert"></div>
+          <form id="form-konto">
+            <div class="field-row field-row--2">
+              <div class="field">
+                <label for="konto-navn">Navn <span style="text-transform:none; letter-spacing:0;">(valgfritt)</span></label>
+                <input id="konto-navn" type="text" />
+              </div>
+              <div class="field">
+                <label for="konto-epost">E-post (brukernavn)</label>
+                <input id="konto-epost" type="email" required />
+              </div>
+            </div>
+            <div class="field">
+              <label for="konto-kode">Kode <span style="text-transform:none; letter-spacing:0;">(la stå tom for å lage en tilfeldig)</span></label>
+              <input id="konto-kode" type="text" autocomplete="off" />
+            </div>
+            <button class="btn" type="submit">Opprett innlogging</button>
+          </form>
+
+          <div id="konto-kode-boks" class="kode-boks" style="display: none;">
+            Innlogging opprettet for <strong id="kode-epost"></strong>.<br />
+            Kode (kopier og send på mail nå, den vises bare denne ene gangen):
+            <div class="kode" id="kode-verdi"></div>
+          </div>
+        </div>
+
+        <div class="admin-group">
+          <h3>Eksisterende innlogginger</h3>
+          <div class="admin-table-wrap">
+            <table class="admin-table">
+              <thead>
+                <tr><th>Opprettet</th><th>Navn</th><th>E-post</th><th></th></tr>
+              </thead>
+              <tbody id="tabell-kontoer"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ INNHOLD PÅ SIDEN ============ -->
+      <section class="admin-section">
+        <h2>Innhold på siden</h2>
+        <p class="lede" style="margin-bottom: 8px;">
+          Endre tekstene som vises i boksene på siden. Husk å trykke "Lagre endringer" nederst.
+        </p>
+
+        <form id="form-innhold">
+
+          <div class="admin-group">
+            <h3>Forside — toppfelt</h3>
+            <div class="field-row field-row--2">
+              <div class="field">
+                <label for="c-forside_metabar_venstre">Toppfelt, venstre</label>
+                <input id="c-forside_metabar_venstre" />
+              </div>
+              <div class="field">
+                <label for="c-forside_fase_badge">Toppfelt, høyre (rød)</label>
+                <input id="c-forside_fase_badge" />
+              </div>
+            </div>
+            <div class="field">
+              <label for="c-forside_tagline">Tagline under HALVTIME-logoen</label>
+              <input id="c-forside_tagline" />
+            </div>
+          </div>
+
+          <div class="admin-group">
+            <h3>Forside — leder</h3>
+            <div class="field">
+              <label for="c-forside_leder_headline">Overskrift</label>
+              <input id="c-forside_leder_headline" />
+            </div>
+            <div class="field">
+              <label for="c-forside_leder_lede">Tekst</label>
+              <textarea id="c-forside_leder_lede" rows="3"></textarea>
+            </div>
+            <div class="field">
+              <label for="c-forside_visjon">Visjon-boksen (sidebar)</label>
+              <textarea id="c-forside_visjon" rows="3"></textarea>
+            </div>
+          </div>
+
+          <div class="admin-group">
+            <h3>Forside — for creators</h3>
+            <div class="field">
+              <label for="c-forside_kreator_intro">Innledning</label>
+              <input id="c-forside_kreator_intro" />
+            </div>
+            <div class="field-row field-row--2">
+              <div class="field"><label for="c-forside_kreator_steg1_tittel">Steg 1 — tittel</label><input id="c-forside_kreator_steg1_tittel" /></div>
+              <div class="field"><label for="c-forside_kreator_steg1_tekst">Steg 1 — tekst</label><input id="c-forside_kreator_steg1_tekst" /></div>
+            </div>
+            <div class="field-row field-row--2">
+              <div class="field"><label for="c-forside_kreator_steg2_tittel">Steg 2 — tittel</label><input id="c-forside_kreator_steg2_tittel" /></div>
+              <div class="field"><label for="c-forside_kreator_steg2_tekst">Steg 2 — tekst</label><input id="c-forside_kreator_steg2_tekst" /></div>
+            </div>
+            <div class="field-row field-row--2">
+              <div class="field"><label for="c-forside_kreator_steg3_tittel">Steg 3 — tittel</label><input id="c-forside_kreator_steg3_tittel" /></div>
+              <div class="field"><label for="c-forside_kreator_steg3_tekst">Steg 3 — tekst</label><input id="c-forside_kreator_steg3_tekst" /></div>
+            </div>
+          </div>
+
+          <div class="admin-group">
+            <h3>Forside — for bedrifter</h3>
+            <div class="field">
+              <label for="c-forside_bedrift_intro">Innledning</label>
+              <input id="c-forside_bedrift_intro" />
+            </div>
+            <div class="field-row field-row--2">
+              <div class="field"><label for="c-forside_bedrift_steg1_tittel">Steg 1 — tittel</label><input id="c-forside_bedrift_steg1_tittel" /></div>
+              <div class="field"><label for="c-forside_bedrift_steg1_tekst">Steg 1 — tekst</label><input id="c-forside_bedrift_steg1_tekst" /></div>
+            </div>
+            <div class="field-row field-row--2">
+              <div class="field"><label for="c-forside_bedrift_steg2_tittel">Steg 2 — tittel</label><input id="c-forside_bedrift_steg2_tittel" /></div>
+              <div class="field"><label for="c-forside_bedrift_steg2_tekst">Steg 2 — tekst</label><input id="c-forside_bedrift_steg2_tekst" /></div>
+            </div>
+            <div class="field-row field-row--2">
+              <div class="field"><label for="c-forside_bedrift_steg3_tittel">Steg 3 — tittel</label><input id="c-forside_bedrift_steg3_tittel" /></div>
+              <div class="field"><label for="c-forside_bedrift_steg3_tekst">Steg 3 — tekst</label><input id="c-forside_bedrift_steg3_tekst" /></div>
+            </div>
+          </div>
+
+          <div class="admin-group">
+            <h3>Bedrifter-siden</h3>
+            <div class="field">
+              <label for="c-bedrifter_lede">Innledningstekst</label>
+              <textarea id="c-bedrifter_lede" rows="3"></textarea>
+            </div>
+            <div class="field">
+              <label for="c-bedrifter_status">"Status"-boksen</label>
+              <textarea id="c-bedrifter_status" rows="3"></textarea>
+            </div>
+          </div>
+
+          <div class="admin-group">
+            <h3>Min side (etter creator har logget inn)</h3>
+            <div class="field">
+              <label for="c-minside_intro">Introtekst over oppdragene</label>
+              <textarea id="c-minside_intro" rows="2"></textarea>
+            </div>
+          </div>
+
+          <div class="admin-group">
+            <h3>Kontaktinfo (vises på Kontakt-siden)</h3>
+            <div class="field">
+              <label for="c-kontakt_intro">Innledningstekst</label>
+              <input id="c-kontakt_intro" />
+            </div>
+            <div class="field-row field-row--2">
+              <div class="field"><label for="c-kontakt_epost">E-post</label><input id="c-kontakt_epost" type="email" /></div>
+              <div class="field"><label for="c-kontakt_telefon">Telefon</label><input id="c-kontakt_telefon" /></div>
+            </div>
+            <div class="field">
+              <label for="c-kontakt_adresse">Adresse</label>
+              <input id="c-kontakt_adresse" />
+            </div>
+            <div class="field">
+              <label for="c-kontakt_annet">Annet <span style="text-transform:none; letter-spacing:0;">(valgfritt — f.eks. åpningstider eller sosiale medier)</span></label>
+              <textarea id="c-kontakt_annet" rows="2"></textarea>
+            </div>
+          </div>
+
+          <div class="save-row">
+            <button class="btn" type="submit">Lagre endringer</button>
+            <span class="saved-msg" id="innhold-lagret">Lagret ✓</span>
+          </div>
+        </form>
+      </section>
+    </div>
+  </main>
+
+  <footer class="sitefoot">
+    <div class="footstamp"><a class="brandstamp" href="index.html">HALVTIME<sup>TM</sup></a></div>
+    <hr class="rule rule--soft" />
+    <div class="wrap footer-meta">
+      <span>HALVTIME™ — Oslo, 2026</span>
+      <a href="kontakt.html">Kontakt</a>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

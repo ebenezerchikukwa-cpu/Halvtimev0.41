@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="no">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Min side — HALVTIME</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body class="authpage">
+
+  <div class="cornermark"><div class="wrap"><a class="brandstamp" href="index.html">HALVTIME<sup>TM</sup></a></div></div>
+
+  <header class="subhead">
+    <div class="wrap">
+      <a class="subhead__brand" href="index.html">HALVTIME<sup>TM</sup></a>
+      <nav aria-label="Hovedmeny">
+        <a href="index.html#kreatorer">For creators</a>
+        <a href="bedrifter.html">For bedrifter</a>
+        <a href="kontakt.html">Kontakt</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Innlogging (vises når man ikke er logget inn) -->
+  <main id="minside-logg-inn">
+    <div class="authcard">
+      <div class="tearout">
+        <span class="tearout__label">Min side</span>
+        <h2>Logg inn</h2>
+        <p style="font-size: 13px; color: var(--ink-soft); margin: 0 0 20px;">
+          Min side er for creators vi har koblet på et oppdrag. Har du fått en e-post og
+          kode fra oss, logger du inn her.
+        </p>
+
+        <div id="minside-melding" class="form-msg" role="alert"></div>
+
+        <form id="form-minside-logg-inn">
+          <div class="field">
+            <label for="mi-epost">E-post</label>
+            <input id="mi-epost" type="email" required autocomplete="email" />
+          </div>
+          <div class="field">
+            <label for="mi-passord">Kode</label>
+            <input id="mi-passord" type="password" required autocomplete="current-password" />
+          </div>
+          <button class="btn btn--red btn--block" type="submit">Logg inn</button>
+        </form>
+      </div>
+
+      <p class="authcard__switch">
+        Ikke koblet på noe ennå? <a href="kreator-forespoersel.html">Send en forespørsel →</a>
+      </p>
+    </div>
+  </main>
+
+  <!-- Innlogget visning (skjult til man er logget inn) -->
+  <div id="minside-innhold" style="display: none;">
+    <div class="wrap">
+      <div class="appbar">
+        <span class="appbar__brand">Min side</span>
+        <div class="appbar__user">
+          <span>Hei, <strong id="bruker-navn" style="color: var(--ink);">—</strong></span>
+          <button id="minside-logg-ut" type="button">Logg ut</button>
+        </div>
+      </div>
+    </div>
+
+    <main class="wrap">
+      <div class="page-top">
+        <p class="eyebrow">Oppdrag</p>
+        <h1>Oppdragene dine</h1>
+        <p class="lede" data-c="minside_intro">Her ser du oppdragene dine når vi har koblet deg på noe.</p>
+      </div>
+
+      <section style="padding: clamp(24px, 5vw, 44px) 0;">
+        <div class="oppdrag-kolonner">
+          <div class="oppdrag-kolonne oppdrag-kolonne--tilgjengelig">
+            <h3>Tilgjengelige</h3>
+            <div id="oppdrag-tilgjengelig"></div>
+          </div>
+          <div class="oppdrag-kolonne">
+            <h3>Aktive</h3>
+            <div id="oppdrag-aktivt"></div>
+          </div>
+          <div class="oppdrag-kolonne">
+            <h3>Ferdige</h3>
+            <div id="oppdrag-ferdig"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <footer class="sitefoot">
+    <div class="footstamp"><a class="brandstamp" href="index.html">HALVTIME<sup>TM</sup></a></div>
+    <hr class="rule rule--soft" />
+    <div class="wrap footer-meta">
+      <span>HALVTIME™ — Oslo, 2026</span>
+      <a href="kontakt.html">Kontakt</a>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/content.js"></script>
+  <script src="js/minside.js"></script>
+</body>
+</html>

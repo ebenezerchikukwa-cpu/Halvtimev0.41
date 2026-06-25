@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="no">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Finn creators — HALVTIME</title>
+  <meta name="description" content="Send en uforpliktende forespørsel, så matcher HALVTIME deg med relevante norske creators." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <div class="cornermark"><div class="wrap"><a class="brandstamp" href="index.html">HALVTIME<sup>TM</sup></a></div></div>
+
+  <header class="subhead">
+    <div class="wrap">
+      <a class="subhead__brand" href="index.html">HALVTIME<sup>TM</sup></a>
+      <nav aria-label="Hovedmeny">
+        <a href="index.html#kreatorer">For creators</a>
+        <a href="bedrifter.html" aria-current="page" style="border-bottom: 2px solid var(--red); padding-bottom: 3px;">For bedrifter</a>
+        <a href="kontakt.html">Kontakt</a>
+        <a class="login" href="minside.html">Min side</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="page-top">
+      <p class="eyebrow">For bedrifter</p>
+      <h1>Finn creators</h1>
+      <p class="lede" data-c="bedrifter_lede">
+        Basen er fortsatt under oppbygging, så fritt søk er ikke åpent ennå. Si hva dere
+        leter etter, så matcher vi dere manuelt med relevante creators. Gratis, og uten
+        at dere binder dere til noe.
+      </p>
+    </div>
+
+    <section style="padding: clamp(28px, 5vw, 48px) 0;">
+      <div class="emptystate">
+        <p class="eyebrow">Status</p>
+        <p data-c="bedrifter_status">
+          Vi tar inn creators fortløpende innenfor utvalgte nisjer. Send forespørselen under,
+          så hører dere fra oss på mail når vi har et godt forslag. Som regel innen et par virkedager.
+        </p>
+      </div>
+
+      <div class="tearout" style="max-width: 600px;">
+        <span class="tearout__label">Forespørsel</span>
+        <h2>Send en uforpliktende forespørsel</h2>
+
+        <div id="bedrift-melding" class="form-msg" role="alert"></div>
+
+        <form id="form-bedrift">
+          <div class="field">
+            <label for="b-bedriftsnavn">Bedrift</label>
+            <input id="b-bedriftsnavn" type="text" required autocomplete="organization" />
+          </div>
+
+          <div class="field-row field-row--2">
+            <div class="field">
+              <label for="b-kontaktperson">Kontaktperson</label>
+              <input id="b-kontaktperson" type="text" autocomplete="name" />
+            </div>
+            <div class="field">
+              <label for="b-epost">E-post</label>
+              <input id="b-epost" type="email" required autocomplete="email" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="b-telefon">Telefon</label>
+            <input id="b-telefon" type="tel" required autocomplete="tel" placeholder="F.eks. 412 34 567" />
+          </div>
+
+          <div class="field">
+            <label>Hva slags content er dere ute etter?</label>
+            <p class="hint" style="margin: 0 0 10px;">Velg alle som passer. Trykk igjen for å fjerne.</p>
+            <div id="nisjevelger"></div>
+          </div>
+
+          <div class="field">
+            <label for="b-melding">Mer informasjon <span style="text-transform:none; letter-spacing:0;">(valgfritt)</span></label>
+            <textarea id="b-melding" rows="4" placeholder="Budsjett, tidsramme, målgruppe, alt som hjelper oss å matche riktig."></textarea>
+          </div>
+
+          <button class="btn btn--block" type="submit">Send forespørsel</button>
+        </form>
+
+        <div id="bedrift-suksess" class="form-success">
+          <p class="eyebrow" style="margin-bottom: 8px;">Mottatt</p>
+          <p style="color: var(--ink-soft); margin: 0;">
+            Takk! Forespørselen er sendt. Vi tar kontakt på mail så snart vi har et forslag som passer.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="sitefoot">
+    <div class="footstamp"><a class="brandstamp" href="index.html">HALVTIME<sup>TM</sup></a></div>
+    <hr class="rule rule--soft" />
+    <div class="wrap footer-meta">
+      <span>HALVTIME™ — Oslo, 2026</span>
+      <a href="kontakt.html">Kontakt</a>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/content.js"></script>
+  <script src="js/nisjevelger.js"></script>
+  <script src="js/business.js"></script>
+</body>
+</html>

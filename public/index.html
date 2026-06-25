@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="no">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>HALVTIME — der norske creators og bedrifter finner hverandre</title>
+  <meta name="description" content="HALVTIME kobler mikro- og UGC-creators med bedrifter som har budsjett og noe å vise frem. Send en forespørsel som creator, eller finn creators som bedrift." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <div class="cornermark"><div class="wrap"><a class="brandstamp" href="index.html">HALVTIME<sup>TM</sup></a></div></div>
+
+  <div class="metabar">
+    <div class="wrap">
+      <span data-c="forside_metabar_venstre">CREATOR-MARKED · NORGE</span>
+      <span class="fase" data-c="forside_fase_badge">FASE 01 — TIDLIG TILGANG</span>
+    </div>
+  </div>
+
+  <header class="masthead">
+    <div class="hero-pixels" aria-hidden="true">
+      <canvas id="pixelfelt"></canvas>
+    </div>
+    <div class="wrap hero-inner">
+      <h1 class="wordmark">HALVTIME<sup>TM</sup></h1>
+      <p class="tagline" data-c="forside_tagline">Her finner norske creators og bedrifter hverandre, og får ting gjort.</p>
+    </div>
+  </header>
+
+  <nav class="navstrip" aria-label="Hovedmeny">
+    <div class="wrap">
+      <div class="navstrip__links">
+        <a href="#kreatorer">For creators</a>
+        <a href="#bedrifter">For bedrifter</a>
+        <a href="kontakt.html">Kontakt</a>
+      </div>
+      <div class="navstrip__actions">
+        <a class="login" href="minside.html">Min side</a>
+        <a class="btn btn--red" href="kreator-forespoersel.html">Bli creator</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <section class="editorial wrap">
+      <div>
+        <p class="eyebrow">Hvem er HALVTIME for</p>
+        <h2 class="headline" data-c="forside_leder_headline">Laget for de som leverer. Ikke bare de med flest følgere.</h2>
+        <p class="lede" data-c="forside_leder_lede">
+          Trenger du innhold som faktisk føles ekte? HALVTIME kobler bedrifter med aktuelle
+          SoMe-profiler som kan lage videoer, bilder og konsepter folk faktisk bryr seg om.
+          Ingen gjettelek. Ingen random DM-runder. Bare riktige folk til de riktige oppdragene.
+        </p>
+        <div class="cta-row">
+          <a class="btn" href="kreator-forespoersel.html">Bli creator →</a>
+          <a class="btn btn--ghost" href="bedrifter.html">Finn creators →</a>
+        </div>
+      </div>
+
+      <aside class="sidebar">
+        <h2>Innhold</h2>
+        <ul class="toc">
+          <li><span class="num">01</span><a href="#kreatorer">For creators →</a></li>
+          <li><span class="num">02</span><a href="#bedrifter">For bedrifter →</a></li>
+        </ul>
+        <div class="factbox">
+          <strong>Visjon.</strong> <span data-c="forside_visjon">Markedsføring fungerer ikke på samme måte som før.
+          Folk forventer innhold som føles ekte, relevant og tilpasset det de faktisk bryr seg om. Derfor må
+          creator-markedet bli enklere og mer treffsikkert. HALVTIME skal gjøre det lettere for bedrifter å finne
+          creators som passer, og for creators å få oppdrag basert på kvalitet, relevans og gjennomføring, ikke
+          bare antall følgere.</span>
+        </div>
+      </aside>
+    </section>
+
+    <hr class="rule" />
+
+    <section class="split">
+      <div class="split__panel split__panel--bedrift" id="kreatorer">
+        <h3>For creators</h3>
+        <p data-c="forside_kreator_intro">Lag content for bedrifter som faktisk betaler. Du bestemmer hva du sier ja til.</p>
+        <ol class="steps" style="grid-template-columns: 1fr; margin-bottom: 24px;">
+          <li><span class="num">01</span><h3 data-c="forside_kreator_steg1_tittel">Send en forespørsel</h3><p data-c="forside_kreator_steg1_tekst">Fortell oss hva du lager og hvor du legger det ut.</p></li>
+          <li><span class="num">02</span><h3 data-c="forside_kreator_steg2_tittel">Vi matcher deg</h3><p data-c="forside_kreator_steg2_tekst">Med bedrifter som passer nisjen din.</p></li>
+          <li><span class="num">03</span><h3 data-c="forside_kreator_steg3_tittel">Få betalt</h3><p data-c="forside_kreator_steg3_tekst">Du lager content og får betalt. Enkelt, uten unødvendige mellomledd.</p></li>
+        </ol>
+        <div class="cta-row">
+          <a class="btn btn--red" href="kreator-forespoersel.html">Send forespørsel →</a>
+        </div>
+        <p style="font-size: 12px; color: var(--ink-soft); margin-top: 14px;">
+          Har du fått tilgang? <a href="minside.html" style="text-decoration: underline;">Logg inn på Min side</a>
+        </p>
+      </div>
+
+      <div class="split__panel split__panel--bedrift" id="bedrifter">
+        <h3>For bedrifter</h3>
+        <p data-c="forside_bedrift_intro">Finn riktig creator for produktet ditt, uten timer med research og DM-er.</p>
+        <ol class="steps" style="grid-template-columns: 1fr; margin-bottom: 24px;">
+          <li><span class="num">01</span><h3 data-c="forside_bedrift_steg1_tittel">Si hva du leter etter</h3><p data-c="forside_bedrift_steg1_tekst">Nisje, budsjett og type content.</p></li>
+          <li><span class="num">02</span><h3 data-c="forside_bedrift_steg2_tittel">Vi matcher manuelt</h3><p data-c="forside_bedrift_steg2_tekst">Mens basen bygges, finner vi creators for hånd.</p></li>
+          <li><span class="num">03</span><h3 data-c="forside_bedrift_steg3_tittel">Få forslag på mail</h3><p data-c="forside_bedrift_steg3_tekst">Helt uforpliktende, og uten kostnad.</p></li>
+        </ol>
+        <div class="cta-row">
+          <a class="btn btn--ghost" href="bedrifter.html">Finn creators →</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="sitefoot">
+    <div class="footstamp"><a class="brandstamp" href="index.html">HALVTIME<sup>TM</sup></a></div>
+    <hr class="rule rule--soft" />
+    <div class="wrap footer-meta">
+      <span>HALVTIME™ — Oslo, 2026</span>
+      <a href="kontakt.html">Kontakt</a>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/content.js"></script>
+  <script src="js/heropiksler.js"></script>
+</body>
+</html>

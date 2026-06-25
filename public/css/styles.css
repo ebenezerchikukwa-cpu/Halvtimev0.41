@@ -1,0 +1,1348 @@
+/* =========================================================================
+   HALVTIME — design tokens
+   En "dossier"-aktig avisestetikk: ett display-typesnitt kun for
+   merkenavnet, og ett monospace-typesnitt for alt annet — nav,
+   overskrifter, brødtekst, skjemaer. Tanken: HALVTIME sitt fortrinn er
+   data (jf. strateginotatet), og monospace gir et "strukturert
+   datablad"-uttrykk i stedet for en generisk markedsplass-følelse.
+   ========================================================================= */
+
+:root {
+  --paper: #f7f8fa;
+  --paper-shade: #eceef2;
+  --panel: #ffffff;
+  --ink: #0d0e12;
+  --ink-soft: #4a4d57;
+  --ink-faint: #898d99;
+  --rule: #0d0e12;
+  --rule-soft: #dfe2e8;
+  --red: #e60012;
+  --red-dark: #a00909;
+  --red-tint: #fdeaec;
+  --glow: rgba(230, 0, 18, 0.10);
+
+  --font-display: "Big Shoulders Display", "Arial Narrow", sans-serif;
+  --font-mono: "JetBrains Mono", "IBM Plex Mono", ui-monospace, Menlo, monospace;
+
+  --maxw: 1080px;
+  --gutter: clamp(20px, 5vw, 48px);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background-color: var(--paper);
+  /* Hårfin, kald gradient + fast rød glød øverst gir et mer moderne,
+     mindre "papir"-aktig uttrykk uten å miste det rene avis-gridet. */
+  background-image:
+    radial-gradient(900px 480px at 78% -8%, var(--glow), transparent 70%),
+    linear-gradient(180deg, #ffffff 0%, var(--paper) 38%);
+  background-attachment: fixed;
+  color: var(--ink);
+  font-family: var(--font-mono);
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+}
+
+button {
+  font-family: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--red);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+.wrap {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+.rule {
+  border: none;
+  border-top: 1px solid var(--rule);
+  margin: 0;
+}
+
+.rule--soft {
+  border-top: 1px solid var(--rule-soft);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+
+/* ---- Masthead meta bar ------------------------------------------------- */
+
+.metabar {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.metabar .wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  gap: 16px;
+}
+
+.metabar .fase {
+  color: var(--red);
+  font-weight: 700;
+}
+
+/* ---- Hero / masthead ---------------------------------------------------- */
+
+.masthead {
+  position: relative;
+  padding-top: clamp(28px, 6vw, 56px);
+  padding-bottom: clamp(20px, 4vw, 32px);
+  overflow: hidden;
+}
+
+.hero-pixels {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.hero-pixels canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.hero-inner {
+  position: relative;
+  z-index: 1;
+}
+
+.wordmark {
+  font-family: var(--font-display);
+  font-weight: 900;
+  -webkit-text-stroke: 0.015em var(--ink);
+  letter-spacing: -0.01em;
+  line-height: 0.85;
+  margin: 0;
+  font-size: clamp(58px, 13vw, 148px);
+  position: relative;
+  display: inline-flex;
+}
+
+.wordmark sup {
+  font-family: var(--font-mono);
+  font-size: 0.09em;
+  font-weight: 700;
+  top: -0.6em;
+  margin-left: 0.08em;
+  -webkit-text-stroke: 0;
+}
+
+.tagline {
+  margin-top: 14px;
+  font-size: 13px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  max-width: 46ch;
+}
+
+/* ---- Nav strip ---------------------------------------------------------- */
+
+.navstrip {
+  border-top: 1px solid var(--rule);
+  border-bottom: 3px solid var(--rule);
+}
+
+.navstrip .wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding-top: 14px;
+  padding-bottom: 14px;
+  flex-wrap: wrap;
+}
+
+.navstrip__links {
+  display: flex;
+  gap: 28px;
+  flex-wrap: wrap;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.navstrip__links a {
+  text-decoration: none;
+  padding-bottom: 3px;
+  border-bottom: 2px solid transparent;
+}
+
+.navstrip__links a:hover,
+.navstrip__links a[aria-current="page"] {
+  border-bottom-color: var(--red);
+}
+
+.navstrip__actions {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.navstrip__actions a.login {
+  text-decoration: underline;
+  text-decoration-color: var(--rule-soft);
+  font-weight: 600;
+}
+
+/* ---- Compact sub-page header -------------------------------------------- */
+
+.subhead {
+  border-bottom: 3px solid var(--rule);
+}
+
+.subhead .wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding-top: 18px;
+  padding-bottom: 18px;
+  flex-wrap: wrap;
+}
+
+.subhead__brand {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 24px;
+  text-decoration: none;
+  color: var(--ink);
+  display: inline-flex;
+}
+
+.subhead__brand sup {
+  font-family: var(--font-mono);
+  font-size: 0.32em;
+  font-weight: 700;
+  top: -0.7em;
+}
+
+.subhead nav {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-weight: 600;
+  flex-wrap: wrap;
+}
+
+.subhead nav a.login {
+  text-decoration: underline;
+  text-decoration-color: var(--rule-soft);
+}
+
+.page-top {
+  padding-top: clamp(28px, 6vw, 44px);
+}
+
+.page-top .eyebrow {
+  margin-bottom: 10px;
+}
+
+.page-top h1 {
+  font-size: clamp(26px, 4.5vw, 40px);
+  margin: 0 0 14px;
+  max-width: 26ch;
+}
+
+.page-top .lede {
+  margin-bottom: 0;
+}
+
+/* ---- Buttons -------------------------------------------------------------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 12px 20px;
+  border: 1px solid var(--ink);
+  background: var(--ink);
+  color: var(--paper);
+  cursor: pointer;
+  transition: transform 0.12s ease, background 0.12s ease, color 0.12s ease;
+}
+
+.btn:hover {
+  background: var(--red);
+  border-color: var(--red);
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn--ghost {
+  background: transparent;
+  color: var(--ink);
+}
+
+.btn--ghost:hover {
+  background: var(--ink);
+  color: var(--paper);
+  border-color: var(--ink);
+}
+
+.btn--red {
+  background: var(--red);
+  border-color: var(--red);
+}
+
+.btn--red:hover {
+  background: var(--red-dark);
+  border-color: var(--red-dark);
+}
+
+.btn--block {
+  width: 100%;
+  justify-content: center;
+}
+
+.btn[disabled] {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+/* ---- Editorial layout -------------------------------------------------- */
+
+.editorial {
+  padding-top: clamp(32px, 6vw, 56px);
+  padding-bottom: clamp(32px, 6vw, 56px);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+}
+
+@media (min-width: 760px) {
+  .editorial {
+    grid-template-columns: 1.6fr 1fr;
+  }
+}
+
+.eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--red);
+  margin: 0 0 10px;
+}
+
+.headline {
+  font-size: clamp(24px, 4vw, 36px);
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0 0 18px;
+  max-width: 24ch;
+}
+
+.lede {
+  color: var(--ink-soft);
+  max-width: 62ch;
+  margin: 0 0 24px;
+}
+
+.cta-row {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+/* ---- Sidebar / fact box ------------------------------------------------- */
+
+.sidebar {
+  border-top: 1px solid var(--rule);
+  padding-top: 18px;
+}
+
+.sidebar h2 {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin: 0 0 14px;
+}
+
+.toc {
+  list-style: none;
+  margin: 0 0 28px;
+  padding: 0;
+}
+
+.toc li {
+  display: flex;
+  gap: 12px;
+  padding: 10px 0;
+  border-top: 1px solid var(--rule-soft);
+  font-size: 13px;
+}
+
+.toc li:first-child {
+  border-top: none;
+}
+
+.toc .num {
+  color: var(--red);
+  font-weight: 700;
+}
+
+.toc a {
+  text-decoration: none;
+}
+
+.toc a:hover {
+  text-decoration: underline;
+}
+
+.factbox {
+  background: var(--paper-shade);
+  padding: 18px;
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+
+.factbox strong {
+  color: var(--ink);
+}
+
+/* ---- Numbered steps ------------------------------------------------------ */
+
+.steps {
+  display: grid;
+  gap: 28px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+@media (min-width: 700px) {
+  .steps {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.steps li {
+  border-top: 1px solid var(--rule);
+  padding-top: 14px;
+}
+
+.steps .num {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 28px;
+  color: var(--red);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.steps h3 {
+  font-size: 14px;
+  margin: 0 0 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.steps p {
+  margin: 0;
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+
+/* ---- Two-up split (kreatører / bedrifter) -------------------------------- */
+
+.split {
+  display: grid;
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+}
+
+@media (min-width: 700px) {
+  .split {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.split__panel {
+  background: var(--panel);
+  padding: clamp(22px, 4vw, 36px);
+  transition: box-shadow 0.22s ease, transform 0.22s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .split__panel:hover {
+    box-shadow: inset 0 3px 0 var(--red), 0 10px 30px -16px rgba(13, 14, 18, 0.45);
+    z-index: 2;
+  }
+}
+
+/* Creator-panelet skal bære litt mer rødt enn bedrift-panelet, så det er
+   tydelig hvilken side som er "hovedinngangen". */
+.split__panel--kreator {
+  background: var(--red-tint);
+  border-top: 4px solid var(--red);
+}
+
+.split__panel--kreator h3 {
+  color: var(--red);
+}
+
+.split__panel--kreator .steps li {
+  border-top-color: rgba(217, 1, 1, 0.25);
+}
+
+.split__panel--bedrift {
+  border-top: 4px solid var(--ink);
+}
+
+.split__panel h3 {
+  font-family: var(--font-display);
+  font-size: clamp(26px, 4vw, 34px);
+  margin: 0 0 12px;
+  font-weight: 900;
+}
+
+.split__panel p {
+  color: var(--ink-soft);
+  max-width: 42ch;
+  margin: 0 0 20px;
+}
+
+/* ---- Tear-out form (signaturelement) ------------------------------------ */
+
+.tearout {
+  position: relative;
+  border: 1.5px dashed var(--ink);
+  padding: 28px;
+  background: var(--panel);
+  box-shadow: 0 18px 50px -34px rgba(13, 14, 18, 0.55);
+}
+
+.tearout::before,
+.tearout::after,
+.tearout > .corner-tl,
+.tearout > .corner-br {
+  content: "";
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border: 1.5px solid var(--ink);
+}
+
+.tearout::before {
+  top: -1.5px;
+  left: -1.5px;
+  border-right: none;
+  border-bottom: none;
+}
+
+.tearout::after {
+  bottom: -1.5px;
+  right: -1.5px;
+  border-left: none;
+  border-top: none;
+}
+
+.tearout__label {
+  position: absolute;
+  top: -10px;
+  left: 24px;
+  background: var(--panel);
+  padding: 0 8px;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--red);
+  font-weight: 700;
+}
+
+.tearout h2 {
+  font-size: 20px;
+  margin: 6px 0 22px;
+}
+
+/* ---- Form fields ---------------------------------------------------------- */
+
+.field {
+  margin-bottom: 18px;
+}
+
+.field label {
+  display: block;
+  font-size: 11px;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+  color: var(--ink-soft);
+}
+
+.hint,
+.field .hint {
+  font-size: 11px;
+  color: var(--ink-faint);
+  margin-top: 4px;
+}
+
+.field input,
+.field textarea,
+.field select {
+  width: 100%;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  padding: 10px 12px;
+  border: 1px solid var(--ink);
+  background: var(--panel);
+  color: var(--ink);
+}
+
+.field input:focus,
+.field textarea:focus,
+.field select:focus {
+  outline: 2px solid var(--red);
+  outline-offset: 1px;
+}
+
+.field-row {
+  display: grid;
+  gap: 14px;
+}
+
+@media (min-width: 540px) {
+  .field-row--2 {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.form-msg {
+  font-size: 13px;
+  padding: 12px 14px;
+  margin-bottom: 18px;
+  display: none;
+}
+
+.form-msg.is-error {
+  display: block;
+  background: var(--red-tint);
+  color: var(--red-dark);
+  border-left: 3px solid var(--red);
+}
+
+.form-msg.is-success {
+  display: block;
+  background: var(--paper-shade);
+  border-left: 3px solid var(--ink);
+}
+
+.form-success {
+  display: none;
+}
+
+.form-success.is-visible {
+  display: block;
+}
+
+.tearout.is-done form {
+  display: none;
+}
+
+/* ---- Auth pages ------------------------------------------------------------ */
+
+.authpage {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.authpage main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--gutter) 0;
+}
+
+.authcard {
+  width: 100%;
+  max-width: 420px;
+  padding: 0 var(--gutter);
+}
+
+.authcard__brand {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 34px;
+  margin: 0 0 28px;
+  text-align: center;
+}
+
+.authcard__switch {
+  margin-top: 18px;
+  text-align: center;
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+
+.authcard__switch a {
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+/* ---- Dashboard ------------------------------------------------------------- */
+
+.appbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 18px;
+  padding-bottom: 18px;
+  border-bottom: 3px solid var(--rule);
+  font-size: 12px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.appbar__brand {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 22px;
+  text-transform: none;
+  letter-spacing: 0.01em;
+}
+
+.appbar__user {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  color: var(--ink-soft);
+}
+
+.appbar__user button {
+  background: none;
+  border: none;
+  text-decoration: underline;
+  cursor: pointer;
+  font: inherit;
+  color: var(--ink-soft);
+}
+
+.herocard {
+  margin-top: clamp(28px, 5vw, 48px);
+  border: 1px solid var(--rule);
+  padding: clamp(24px, 5vw, 44px);
+}
+
+.herocard .eyebrow {
+  margin-bottom: 14px;
+}
+
+.herocard h1 {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(28px, 5vw, 46px);
+  line-height: 1.05;
+  margin: 0 0 16px;
+  max-width: 20ch;
+}
+
+.herocard p {
+  color: var(--ink-soft);
+  max-width: 56ch;
+  margin: 0 0 26px;
+}
+
+/* ---- Footer ------------------------------------------------------------------ */
+
+footer.sitefoot {
+  margin-top: clamp(40px, 8vw, 72px);
+  padding-bottom: 32px;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--ink-faint);
+}
+
+.footstamp {
+  display: flex;
+  justify-content: center;
+  padding: 8px 0 18px;
+}
+
+.footstamp .brandstamp,
+.cornermark .brandstamp,
+footer.sitefoot a.brandstamp {
+  color: var(--red);
+  text-decoration: none;
+}
+
+.footstamp .brandstamp {
+  font-size: 26px;
+}
+
+footer.sitefoot .rule {
+  border-top: 1px solid var(--rule);
+}
+
+footer.sitefoot .footer-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding-top: 16px;
+}
+
+footer.sitefoot a {
+  color: var(--ink-soft);
+  text-decoration: underline;
+}
+
+/* ---- Small brand stamp (corner home-link + footer mark) ------------------ */
+
+.brandstamp {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 20px;
+  letter-spacing: -0.01em;
+  color: var(--red);
+  text-shadow: 0.05em 0.05em 0 var(--red-dark);
+  text-decoration: none;
+  display: inline-flex;
+}
+
+.brandstamp sup {
+  font-family: var(--font-mono);
+  font-size: 0.34em;
+  font-weight: 700;
+  top: -0.5em;
+  margin-left: 0.05em;
+  color: var(--red-dark);
+  text-shadow: none;
+}
+
+.cornermark .wrap {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 14px;
+  padding-bottom: 6px;
+}
+
+.cornermark .brandstamp {
+  font-size: 18px;
+}
+
+/* ---- Empty state (bedrifter-side) -------------------------------------------- */
+
+.emptystate {
+  border: 1px solid var(--rule-soft);
+  padding: clamp(28px, 6vw, 48px);
+  text-align: left;
+  color: var(--ink-soft);
+  margin-bottom: 36px;
+}
+
+.emptystate .eyebrow {
+  margin-bottom: 10px;
+}
+
+.emptystate p {
+  margin: 0;
+  max-width: 56ch;
+}
+
+/* ---- Admin: sections, tables, stats ---------------------------------------- */
+
+.admin-section {
+  padding-top: 32px;
+  margin-top: 32px;
+  border-top: 3px solid var(--rule);
+}
+
+.admin-section:first-child {
+  margin-top: 0;
+}
+
+.admin-section h2 {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(22px, 4vw, 30px);
+  margin: 0 0 18px;
+}
+
+.admin-group h3 {
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin: 30px 0 16px;
+  padding-top: 18px;
+  border-top: 1px solid var(--rule-soft);
+}
+
+.admin-group:first-of-type h3 {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: none;
+}
+
+.admin-toolbar {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.admin-table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--rule-soft);
+  margin-bottom: 32px;
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  min-width: 560px;
+}
+
+.admin-table th,
+.admin-table td {
+  text-align: left;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--rule-soft);
+  vertical-align: top;
+}
+
+.admin-table th {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink-soft);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.admin-table tr:last-child td {
+  border-bottom: none;
+}
+
+.admin-empty {
+  color: var(--ink-faint);
+  font-size: 13px;
+  padding: 14px 0 28px;
+}
+
+.statgrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+  margin-bottom: 32px;
+}
+
+.statcard {
+  background: var(--panel);
+  padding: 18px;
+}
+
+.statcard .num {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 34px;
+  color: var(--red);
+  line-height: 1;
+}
+
+.statcard .label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink-soft);
+  margin-top: 6px;
+}
+
+.statbars {
+  margin-bottom: 32px;
+}
+
+.statbar-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 7px 0;
+  font-size: 13px;
+}
+
+.statbar-row .statlabel {
+  width: 150px;
+  flex-shrink: 0;
+  color: var(--ink-soft);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.statbar-row .track {
+  flex: 1;
+  background: var(--paper-shade);
+  height: 10px;
+}
+
+.statbar-row .fill {
+  background: var(--red);
+  height: 100%;
+}
+
+.statbar-row .count {
+  width: 30px;
+  text-align: right;
+  flex-shrink: 0;
+  font-weight: 700;
+}
+
+.save-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.save-row .saved-msg {
+  font-size: 12px;
+  color: var(--ink-soft);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.save-row .saved-msg.is-visible {
+  opacity: 1;
+}
+
+/* ---- Kontakt-side ----------------------------------------------------------- */
+
+.kontakt-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 28px;
+  max-width: 520px;
+}
+
+.kontakt-list li {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+  align-items: baseline;
+  padding: 16px 0;
+  border-top: 1px solid var(--rule-soft);
+}
+
+.kontakt-list li:first-child {
+  border-top: none;
+}
+
+.kontakt-list .k-label {
+  width: 110px;
+  flex-shrink: 0;
+  font-size: 11px;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.kontakt-list .k-value {
+  font-size: 16px;
+}
+
+.kontakt-list .k-value a {
+  text-decoration: underline;
+}
+
+/* ---- Nisje-velger (toggle-knapper) ---------------------------------------- */
+
+.nisje-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.nisje-knapp {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  padding: 9px 14px;
+  border: 1.5px solid var(--ink);
+  background: var(--panel);
+  color: var(--ink);
+  cursor: pointer;
+  transition: background 0.12s ease, color 0.12s ease, transform 0.08s ease, border-color 0.12s ease;
+}
+
+.nisje-knapp:hover {
+  border-color: var(--red);
+}
+
+.nisje-knapp:active {
+  transform: translateY(1px);
+}
+
+.nisje-knapp.is-valgt {
+  background: var(--red);
+  border-color: var(--red);
+  color: #fff;
+}
+
+.nisje-annet {
+  margin-top: 12px;
+  width: 100%;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  padding: 10px 12px;
+  border: 1.5px solid var(--ink);
+  background: var(--panel);
+  color: var(--ink);
+}
+
+.nisje-annet:focus {
+  outline: 2px solid var(--red);
+  outline-offset: 1px;
+}
+
+/* ---- Litt mer moderne, fortsatt avis: mykere interaksjoner ---------------- */
+
+.btn {
+  transition: transform 0.1s ease, background 0.14s ease, color 0.14s ease, border-color 0.14s ease, box-shadow 0.14s ease;
+}
+
+.btn:hover {
+  box-shadow: 3px 3px 0 var(--ink);
+  transform: translate(-1px, -1px);
+}
+
+.btn--red:hover {
+  box-shadow: 3px 3px 0 var(--red-dark);
+}
+
+.btn:active {
+  transform: translate(0, 0);
+  box-shadow: none;
+}
+
+/* Kort/paneler får en hårfin løft-effekt ved hover der det er relevant. */
+.herocard,
+.emptystate {
+  transition: box-shadow 0.18s ease;
+}
+
+.split__panel {
+  transition: background 0.18s ease;
+}
+
+.navstrip__links a,
+.subhead nav a {
+  transition: border-color 0.12s ease, color 0.12s ease;
+}
+
+/* ---- Min side: oppdrag --------------------------------------------------- */
+
+.oppdrag-kolonner {
+  display: grid;
+  gap: 20px;
+  margin-top: 8px;
+}
+
+@media (min-width: 760px) {
+  .oppdrag-kolonner {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.oppdrag-kolonne h3 {
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin: 0 0 12px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--rule);
+}
+
+.oppdrag-kolonne--tilgjengelig h3 {
+  color: var(--red);
+  border-bottom-color: var(--red);
+}
+
+.oppdrag-kort {
+  border: 1px solid var(--rule-soft);
+  padding: 16px;
+  margin-bottom: 12px;
+}
+
+.oppdrag-kort h4 {
+  margin: 0 0 6px;
+  font-size: 15px;
+}
+
+.oppdrag-kort p {
+  margin: 0;
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+
+.oppdrag-tom {
+  font-size: 13px;
+  color: var(--ink-faint);
+  padding: 8px 0;
+}
+
+/* ---- Admin: creator-kontoer og kode-visning ------------------------------ */
+
+.kode-boks {
+  background: var(--paper-shade);
+  border-left: 3px solid var(--red);
+  padding: 14px 16px;
+  margin: 16px 0;
+  font-size: 13px;
+}
+
+.kode-boks .kode {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--red);
+  user-select: all;
+}
+
+.mini-knapp {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  padding: 4px 10px;
+  border: 1px solid var(--ink);
+  background: var(--paper);
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.mini-knapp:hover {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.mini-knapp--fare:hover {
+  background: var(--red);
+  border-color: var(--red);
+}
+
+/* ---- Mobil-finpuss ------------------------------------------------------- */
+
+@media (max-width: 560px) {
+  /* Toppfeltet skal ikke knekke stygt; stable det heller pent. */
+  .metabar .wrap {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
+
+  /* Hjørne-logoen kan ta plass fra innholdet på smale skjermer.
+     Gjør den litt mindre og luftigere. */
+  .cornermark .wrap {
+    padding-top: 10px;
+  }
+  .cornermark .brandstamp {
+    font-size: 15px;
+  }
+
+  /* Nav-lenker litt tettere så de får plass. */
+  .navstrip__links {
+    gap: 16px 18px;
+  }
+  .navstrip .wrap {
+    gap: 14px;
+  }
+
+  /* Skjema-knapper og inputs blir lettere å treffe. */
+  .btn {
+    padding: 13px 20px;
+  }
+  .nisje-knapp {
+    padding: 10px 14px;
+  }
+
+  /* Gi seksjonene litt mer pust på toppen/bunnen. */
+  .editorial {
+    gap: 28px;
+  }
+
+  /* Unngå at brede tabeller i admin sprenger skjermen (de scroller
+     allerede, men gjør scroll tydeligere). */
+  .admin-table {
+    font-size: 12px;
+  }
+}
+
+/* Litt ekstra ambient-glød også i toppen på touch-enheter, siden
+   cursor-gløden ikke finnes der — holder uttrykket "moderne" på mobil. */
+@media (hover: none) {
+  body {
+    background-image:
+      radial-gradient(620px 360px at 88% -6%, var(--glow), transparent 70%),
+      linear-gradient(180deg, #ffffff 0%, var(--paper) 42%);
+  }
+}

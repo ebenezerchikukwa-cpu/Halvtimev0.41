@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="no">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kontakt — HALVTIME</title>
+  <meta name="description" content="Kontakt HALVTIME direkte på e-post eller telefon." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <div class="cornermark"><div class="wrap"><a class="brandstamp" href="index.html">HALVTIME<sup>TM</sup></a></div></div>
+
+  <header class="subhead">
+    <div class="wrap">
+      <a class="subhead__brand" href="index.html">HALVTIME<sup>TM</sup></a>
+      <nav aria-label="Hovedmeny">
+        <a href="index.html#kreatorer">For creators</a>
+        <a href="bedrifter.html">For bedrifter</a>
+        <a href="kontakt.html" aria-current="page" style="border-bottom: 2px solid var(--red); padding-bottom: 3px;">Kontakt</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="page-top">
+      <p class="eyebrow">Kontakt</p>
+      <h1 data-c="kontakt_intro">Har du spørsmål? Ta kontakt direkte.</h1>
+    </div>
+
+    <section style="padding: clamp(28px, 5vw, 48px) 0;">
+      <ul class="kontakt-list">
+        <li>
+          <span class="k-label">E-post</span>
+          <span class="k-value"><a id="kv-epost" href="mailto:kontakt@halvtime.no" data-c="kontakt_epost">kontakt@halvtime.no</a></span>
+        </li>
+        <li id="rad-telefon">
+          <span class="k-label">Telefon</span>
+          <span class="k-value" id="kv-telefon" data-c="kontakt_telefon"></span>
+        </li>
+        <li id="rad-adresse">
+          <span class="k-label">Adresse</span>
+          <span class="k-value" data-c="kontakt_adresse"></span>
+        </li>
+        <li id="rad-annet">
+          <span class="k-label">Annet</span>
+          <span class="k-value" data-c="kontakt_annet"></span>
+        </li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="sitefoot">
+    <div class="footstamp"><a class="brandstamp" href="index.html">HALVTIME<sup>TM</sup></a></div>
+    <hr class="rule rule--soft" />
+    <div class="wrap footer-meta">
+      <span>HALVTIME™ — Oslo, 2026</span>
+      <a href="mailto:kontakt@halvtime.no">kontakt@halvtime.no</a>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/content.js"></script>
+  <script>
+    // Skjuler valgfrie kontaktfelt (telefon/adresse/annet) helt til de er
+    // fylt ut i adminpanelet, så siden ikke viser tomme etiketter.
+    document.addEventListener("innhold:lastet", (e) => {
+      const innhold = e.detail || {};
+      document.getElementById("kv-epost").href = "mailto:" + (innhold.kontakt_epost || "kontakt@halvtime.no");
+      ["telefon", "adresse", "annet"].forEach((felt) => {
+        const rad = document.getElementById("rad-" + felt);
+        if (rad && !innhold["kontakt_" + felt]) rad.style.display = "none";
+      });
+    });
+  </script>
+</body>
+</html>

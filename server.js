@@ -20,8 +20,10 @@ import {
   lagreBedriftForespoersel,
   hentAlleKreatorForespoersler,
   hentAlleBedriftForespoersler,
-  hentInnhold,
+ hentInnhold,
   lagreInnhold,
+  hentOmOss,
+  lagreOmOss,
   hentStatistikk,
 } from "./lib/store.js";
 import {

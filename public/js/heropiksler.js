@@ -8,8 +8,8 @@
   const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const ctx = canvas.getContext("2d");
   const masthead = canvas.closest(".masthead");
-  const SPACING = 14; // avstand mellom prikker (px) – lavere = flere prikker
-  const DOT = 1.3; // grunnstørrelse på en prikk – lavere = mindre prikker
+  const SPACING = 7; // avstand mellom prikker (px) – lavere = flere prikker
+  const DOT = 0.5; // grunnstørrelse på en prikk – lavere = mindre prikker
   const RED = "217, 1, 1";
   let dots = [];
   let w = 0;

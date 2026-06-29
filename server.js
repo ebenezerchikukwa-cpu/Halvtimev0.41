@@ -229,7 +229,18 @@ app.get("/api/innhold", (req, res) => {
 app.post("/api/innhold", krevAdmin, (req, res) => {
   res.json(lagreInnhold(req.body || {}));
 });
+// "Om oss"-innhold: åpent å lese (siden viser det), kun admin kan endre.
+app.get("/api/omoss", (req, res) => {
+  res.json(hentOmOss());
+});
 
+app.post("/api/omoss", krevAdmin, (req, res) => {
+  const data = req.body || {};
+  if (!Array.isArray(data.seksjoner)) {
+    return res.status(400).json({ feil: "Ugyldig innhold." });
+  }
+  res.json(lagreOmOss(data));
+});
 // ---------------------------------------------------------------------
 // Admin-innlogging
 // ---------------------------------------------------------------------

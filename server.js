@@ -234,23 +234,52 @@ app.post("/api/innhold", krevAdmin, (req, res) => {
 // Admin-innlogging
 // ---------------------------------------------------------------------
 
+// Lag 1: e-post + passord. Setter et halvferdig flagg — IKKE full
+// admin-tilgang ennå. Brukeren må gjennom lag 2 (tilgangskoden) etterpå.
 app.post("/api/admin/logg-inn", (req, res) => {
-  const { passord } = req.body || {};
-  if (passord !== ADMIN_PASSORD) {
-    return res.status(401).json({ feil: "Feil passord." });
+  const { epost, passord } = req.body || {};
+  const epostRen = String(epost || "").trim().toLowerCase();
+  if (epostRen !== ADMIN_EPOST || passord !== ADMIN_PASSORD) {
+    return res.status(401).json({ feil: "Feil e-post eller passord." });
+  }
+  req.session.adminSteg1 = true;
+  req.session.erAdmin = false;
+  res.json({ ok: true, trengerTilgangskode: true });
+});
+
+// Lag 2: tilgangskoden. Først her settes ekte admin-tilgang.
+app.post("/api/admin/tilgangskode", (req, res) => {
+  if (!req.session?.adminSteg1) {
+    return res.status(401).json({ feil: "Logg inn med e-post og passord først." });
+  }
+  const { tilgangskode } = req.body || {};
+  if (tilgangskode !== ADMIN_TILGANGSKODE) {
+    return res.status(401).json({ feil: "Feil tilgangskode." });
   }
   req.session.erAdmin = true;
+  req.session.adminSteg1 = false;
   res.json({ ok: true });
 });
 
 app.post("/api/admin/logg-ut", (req, res) => {
-  if (req.session) req.session.erAdmin = false;
+  if (req.session) {
+    req.session.erAdmin = false;
+    req.session.adminSteg1 = false;
+  }
   res.json({ ok: true });
 });
 
 app.get("/api/admin/meg", (req, res) => {
   if (!req.session?.erAdmin) return res.status(401).json({ feil: "Ikke innlogget som admin." });
   res.json({ erAdmin: true });
+});
+
+// Forteller admin-siden hvilket steg man er på: ikke logget inn,
+// midt i (trenger tilgangskode), eller ferdig innlogget.
+app.get("/api/admin/status", (req, res) => {
+  if (req.session?.erAdmin) return res.json({ steg: "inne" });
+  if (req.session?.adminSteg1) return res.json({ steg: "tilgangskode" });
+  res.json({ steg: "ut" });
 });
 
 // ---------------------------------------------------------------------

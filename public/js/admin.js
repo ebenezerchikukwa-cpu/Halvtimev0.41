@@ -62,16 +62,36 @@ const loggInnSeksjon = document.getElementById("admin-logg-inn");
       steg2.style.display = "none";
     }
   }
+// Lag 1: e-post + passord
   const loggInnForm = document.getElementById("form-admin-logg-inn");
   if (loggInnForm) {
     const melding = document.getElementById("admin-logg-inn-melding");
     loggInnForm.addEventListener("submit", async (e) => {
       e.preventDefault();
       skjulMelding(melding);
+      const epost = document.getElementById("admin-epost").value.trim();
       const passord = document.getElementById("admin-passord").value;
       try {
-        await fetchJSON("/api/admin/logg-inn", { method: "POST", body: { passord } });
+        await fetchJSON("/api/admin/logg-inn", { method: "POST", body: { epost, passord } });
         document.getElementById("admin-passord").value = "";
+        await visAdminHvisInnlogget();
+      } catch (err) {
+        visFeil(melding, err.message);
+      }
+    });
+  }
+
+  // Lag 2: tilgangskode
+  const tilgangskodeForm = document.getElementById("form-admin-tilgangskode");
+  if (tilgangskodeForm) {
+    const melding = document.getElementById("admin-tilgangskode-melding");
+    tilgangskodeForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      skjulMelding(melding);
+      const tilgangskode = document.getElementById("admin-tilgangskode").value;
+      try {
+        await fetchJSON("/api/admin/tilgangskode", { method: "POST", body: { tilgangskode } });
+        document.getElementById("admin-tilgangskode").value = "";
         await visAdminHvisInnlogget();
       } catch (err) {
         visFeil(melding, err.message);

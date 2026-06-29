@@ -154,12 +154,19 @@
             <button class="btn" type="submit">Opprett innlogging</button>
           </form>
 
-          <div id="konto-kode-boks" class="kode-boks" style="display: none;">
+         <div id="konto-kode-boks" class="kode-boks" style="display: none;">
             Innlogging opprettet for <strong id="kode-epost"></strong>.<br />
             Kode (kopier og send på mail nå, den vises bare denne ene gangen):
             <div class="kode" id="kode-verdi"></div>
+
+            <div style="margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--rule-soft);">
+              <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 10px;">
+                <strong style="font-size: 12px; letter-spacing: 0.07em; text-transform: uppercase; color: var(--ink-soft);">Ferdig mailutkast</strong>
+                <button type="button" id="kopier-mailutkast" class="mini-knapp">Kopier mailutkast</button>
+              </div>
+              <textarea id="mailutkast-tekst" readonly rows="14" style="width: 100%; font-family: var(--font-mono); font-size: 13px; line-height: 1.5; padding: 12px; border: 1px solid var(--ink); background: var(--panel); color: var(--ink); resize: vertical;"></textarea>
+            </div>
           </div>
-        </div>
 
         <div class="admin-group">
           <h3>Eksisterende innlogginger</h3>

@@ -1346,3 +1346,55 @@ footer.sitefoot a {
       linear-gradient(180deg, #ffffff 0%, var(--paper) 42%);
   }
 }
+/* ---- Nav-lenker som tydelige knapper (mobil-vennlig) --------------------- */
+
+/* Gjelder både forsidens navstrip og undersidenes subhead-meny.
+   Lenkene blir små knapper med ramme, så det er åpenbart at de kan trykkes. */
+.navstrip__links a,
+.subhead nav a {
+  border: 1.5px solid var(--ink);
+  padding: 9px 14px;
+  border-bottom: 1.5px solid var(--ink); /* overstyrer den gamle understrek-stilen */
+  background: var(--panel);
+  text-decoration: none;
+  transition: background 0.12s ease, color 0.12s ease, border-color 0.12s ease;
+}
+
+.navstrip__links a:hover,
+.subhead nav a:hover,
+.navstrip__links a[aria-current="page"],
+.subhead nav a[aria-current="page"] {
+  background: var(--ink);
+  color: var(--paper);
+  border-color: var(--ink);
+}
+
+/* "Logg inn" / "Min side" får rød fyll så hovedhandlingen skiller seg ut. */
+.navstrip__actions a.login,
+.subhead nav a.login {
+  border: 1.5px solid var(--red);
+  background: var(--red);
+  color: #fff;
+  padding: 9px 14px;
+  text-decoration: none;
+}
+
+.navstrip__actions a.login:hover,
+.subhead nav a.login:hover {
+  background: var(--red-dark);
+  border-color: var(--red-dark);
+}
+
+/* På mobil: la knappene få puste og bli lette å treffe med tommelen. */
+@media (max-width: 560px) {
+  .navstrip__links,
+  .subhead nav {
+    gap: 10px;
+  }
+  .navstrip__links a,
+  .subhead nav a,
+  .navstrip__actions a.login,
+  .subhead nav a.login {
+    padding: 11px 16px;
+  }
+}

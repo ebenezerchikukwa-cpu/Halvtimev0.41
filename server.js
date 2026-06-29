@@ -43,6 +43,7 @@ const PORT = process.env.PORT || 3000;
 // for ekstra sikkerhet.
 const ADMIN_EPOST = (process.env.ADMIN_EPOST || "admin@halvtime.no").toLowerCase();
 const ADMIN_PASSORD = process.env.ADMIN_PASSORD || "halvtime567";
+const ADMIN_TILGANGSKODE = process.env.ADMIN_TILGANGSKODE || "ungezimbo567";
 
 app.use(express.json());
 

@@ -224,8 +224,9 @@ document.addEventListener("DOMContentLoaded", () => {
           method: "POST",
           body: { navn, epost, kode },
         });
-        document.getElementById("kode-epost").textContent = svar.epost;
+       document.getElementById("kode-epost").textContent = svar.epost;
         document.getElementById("kode-verdi").textContent = svar.kode;
+        document.getElementById("mailutkast-tekst").value = lagMailutkast(svar.epost, svar.kode);
         kodeBoks.style.display = "block";
         kontoForm.reset();
         lastKontoer();
@@ -284,6 +285,50 @@ document.addEventListener("DOMContentLoaded", () => {
     const div = document.createElement("div");
     div.textContent = s == null ? "" : s;
     return div.innerHTML;
+  }
+
+  visAdminHvisInnlogget();
+});
+// ---- Mailutkast for nye Min side-innlogginger ----------------------------
+
+  function lagMailutkast(epost, kode) {
+    return [
+      "Hei,",
+      "",
+      "Velkommen til HALVTIME!",
+      "",
+      "Brukernavnet ditt er: " + epost,
+      "Passordet ditt er: " + kode,
+      "",
+      "Ta godt vare på passordet ditt, da du trenger dette for å logge inn på Min side.",
+      "",
+      "På Min side får du oversikt over tilgjengelige oppdrag som kan passe for deg. Du kan også bli kontaktet direkte på e-post eller telefon dersom vi finner et oppdrag som matcher profilen din.",
+      "",
+      "Vi gleder oss til å ha deg med videre.",
+      "Lykke til med å kickstarte creator-karrieren din med både små og store oppdrag!",
+      "",
+      "Hilsen",
+      "HALVTIME",
+    ].join("\n");
+  }
+
+  const kopierKnapp = document.getElementById("kopier-mailutkast");
+  if (kopierKnapp) {
+    kopierKnapp.addEventListener("click", async () => {
+      const tekst = document.getElementById("mailutkast-tekst").value;
+      try {
+        await navigator.clipboard.writeText(tekst);
+        const original = kopierKnapp.textContent;
+        kopierKnapp.textContent = "Kopiert ✓";
+        setTimeout(() => (kopierKnapp.textContent = original), 2000);
+      } catch {
+        // Hvis utklippstavlen ikke er tilgjengelig: marker teksten så
+        // brukeren kan kopiere manuelt med Ctrl/Cmd+C.
+        const felt = document.getElementById("mailutkast-tekst");
+        felt.focus();
+        felt.select();
+      }
+    });
   }
 
   visAdminHvisInnlogget();

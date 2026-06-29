@@ -287,8 +287,7 @@ document.addEventListener("DOMContentLoaded", () => {
     return div.innerHTML;
   }
 
-  visAdminHvisInnlogget();
-});
+
 // ---- Mailutkast for nye Min side-innlogginger ----------------------------
 
   function lagMailutkast(epost, kode) {

@@ -32,22 +32,36 @@ const INNHOLD_FELTER = [
 ];
 
 document.addEventListener("DOMContentLoaded", () => {
-  const loggInnSeksjon = document.getElementById("admin-logg-inn");
+const loggInnSeksjon = document.getElementById("admin-logg-inn");
   const innholdSeksjon = document.getElementById("admin-innhold");
   const loggUtKnapp = document.getElementById("admin-logg-ut");
+  const steg1 = document.getElementById("admin-steg1");
+  const steg2 = document.getElementById("admin-steg2");
 
   async function visAdminHvisInnlogget() {
+    let status = { steg: "ut" };
     try {
-      await fetchJSON("/api/admin/meg");
+      status = await fetchJSON("/api/admin/status");
+    } catch {
+      status = { steg: "ut" };
+    }
+
+    if (status.steg === "inne") {
       loggInnSeksjon.style.display = "none";
       innholdSeksjon.style.display = "block";
       lastAlt();
-    } catch {
+    } else if (status.steg === "tilgangskode") {
       loggInnSeksjon.style.display = "block";
       innholdSeksjon.style.display = "none";
+      steg1.style.display = "none";
+      steg2.style.display = "block";
+    } else {
+      loggInnSeksjon.style.display = "block";
+      innholdSeksjon.style.display = "none";
+      steg1.style.display = "block";
+      steg2.style.display = "none";
     }
   }
-
   const loggInnForm = document.getElementById("form-admin-logg-inn");
   if (loggInnForm) {
     const melding = document.getElementById("admin-logg-inn-melding");

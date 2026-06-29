@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="no">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Om oss — HALVTIME</title>
+  <meta name="description" content="Om HALVTIME — plattformen som kobler norske bedrifter med creators, mikroinfluensere og innholdskapere." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    /* Om oss: klikkbare spørsmål (accordion) */
+    .omoss-seksjon { margin-bottom: clamp(36px, 6vw, 56px); }
+    .omoss-seksjon > h2 {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: clamp(24px, 4.5vw, 36px);
+      margin: 0 0 18px;
+      padding-bottom: 10px;
+      border-bottom: 3px solid var(--rule);
+    }
+    .qa {
+      border-bottom: 1px solid var(--rule-soft);
+    }
+    .qa__sporsmaal {
+      width: 100%;
+      text-align: left;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: var(--font-mono);
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--ink);
+      padding: 16px 36px 16px 0;
+      position: relative;
+      line-height: 1.4;
+    }
+    .qa__sporsmaal:hover { color: var(--red); }
+    .qa__sporsmaal::after {
+      content: "+";
+      position: absolute;
+      right: 6px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 20px;
+      color: var(--red);
+      font-weight: 700;
+    }
+    .qa.is-open .qa__sporsmaal::after { content: "−"; }
+    .qa__svar {
+      display: none;
+      padding: 0 0 18px;
+      color: var(--ink-soft);
+      max-width: 70ch;
+      line-height: 1.6;
+    }
+    .qa.is-open .qa__svar { display: block; }
+    .omoss-juridisk {
+      margin-top: clamp(40px, 7vw, 64px);
+      background: var(--paper-shade);
+      padding: clamp(20px, 4vw, 32px);
+      font-size: 13px;
+      color: var(--ink-soft);
+      line-height: 1.6;
+    }
+    .omoss-juridisk h2 {
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink);
+      margin: 0 0 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="cornermark"><div class="wrap"><a class="brandstamp" href="index.html">HALVTIME<sup>TM</sup></a></div></div>
+  <header class="subhead">
+    <div class="wrap">
+      <a class="subhead__brand" href="index.html">HALVTIME<sup>TM</sup></a>
+      <nav aria-label="Hovedmeny">
+        <a href="index.html#kreatorer">For creators</a>
+        <a href="bedrifter.html">For bedrifter</a>
+        <a href="om-oss.html" aria-current="page" style="border-bottom: 2px solid var(--red); padding-bottom: 3px;">Om oss</a>
+        <a href="kontakt.html">Kontakt</a>
+      </nav>
+    </div>
+  </header>
+  <main class="wrap">
+    <div class="page-top">
+      <p class="eyebrow">Om oss</p>
+      <h1>Riktig creator til riktig oppdrag.</h1>
+      <p class="lede">Trykk på et spørsmål for å lese svaret.</p>
+    </div>
+
+    <section style="padding: clamp(28px, 5vw, 48px) 0;">
+      <div id="omoss-innhold">
+        <p class="admin-empty">Laster …</p>
+      </div>
+
+      <div class="omoss-juridisk" id="omoss-juridisk-boks" style="display: none;">
+        <h2>Kort juridisk informasjon</h2>
+        <p id="omoss-juridisk-tekst"></p>
+      </div>
+    </section>
+  </main>
+  <footer class="sitefoot">
+    <div class="footstamp"><a class="brandstamp" href="index.html">HALVTIME<sup>TM</sup></a></div>
+    <hr class="rule rule--soft" />
+    <div class="wrap footer-meta">
+      <span>HALVTIME™ — Trondheim, 2026</span>
+      <a href="mailto:kontakt@halvtime.no">kontakt@halvtime.no</a>
+    </div>
+  </footer>
+  <script src="js/main.js"></script>
+  <script src="js/om-oss.js"></script>
+</body>
+</html>

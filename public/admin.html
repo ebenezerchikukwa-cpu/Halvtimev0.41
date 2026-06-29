@@ -23,26 +23,47 @@
 
   <main class="wrap">
 
-    <div id="admin-logg-inn" class="page-top">
+  <div id="admin-logg-inn" class="page-top">
       <p class="eyebrow">Admin</p>
       <h1>Logg inn</h1>
       <p class="lede">Kun for HALVTIME-teamet.</p>
 
-      <div class="tearout" style="max-width: 420px; margin-top: 28px;">
+      <!-- Lag 1: e-post + passord -->
+      <div id="admin-steg1" class="tearout" style="max-width: 420px; margin-top: 28px;">
         <span class="tearout__label">Adminpanel</span>
-        <h2>Skriv inn passordet</h2>
+        <h2>Logg inn</h2>
 
         <div id="admin-logg-inn-melding" class="form-msg" role="alert"></div>
 
         <form id="form-admin-logg-inn">
           <div class="field">
+            <label for="admin-epost">E-post</label>
+            <input id="admin-epost" type="email" required autocomplete="username" />
+          </div>
+          <div class="field">
             <label for="admin-passord">Passord</label>
             <input id="admin-passord" type="password" required autocomplete="current-password" />
+          </div>
+          <button class="btn btn--block" type="submit">Fortsett</button>
+        </form>
+      </div>
+
+      <!-- Lag 2: tilgangskode -->
+      <div id="admin-steg2" class="tearout" style="max-width: 420px; margin-top: 28px; display: none;">
+        <span class="tearout__label">Admintilgang</span>
+        <h2>Passord for admintilgang</h2>
+
+        <div id="admin-tilgangskode-melding" class="form-msg" role="alert"></div>
+
+        <form id="form-admin-tilgangskode">
+          <div class="field">
+            <label for="admin-tilgangskode">Tilgangskode</label>
+            <input id="admin-tilgangskode" type="password" required autocomplete="off" />
           </div>
           <button class="btn btn--block" type="submit">Logg inn</button>
         </form>
       </div>
-    </div>
+    </div> 
 
     <div id="admin-innhold" style="display: none;">
       <div class="appbar">

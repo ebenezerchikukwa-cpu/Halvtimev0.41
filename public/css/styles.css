@@ -1398,3 +1398,47 @@ footer.sitefoot a {
     padding: 11px 16px;
   }
 }
+/* ---- Admin: faner ------------------------------------------------------- */
+
+.admin-faner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 24px 0 8px;
+  border-bottom: 3px solid var(--rule);
+  padding-bottom: 0;
+}
+
+.admin-fane {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 11px 16px;
+  border: 1.5px solid var(--ink);
+  border-bottom: none;
+  background: var(--panel);
+  color: var(--ink-soft);
+  cursor: pointer;
+  position: relative;
+  top: 1.5px;
+}
+
+.admin-fane:hover {
+  color: var(--ink);
+}
+
+.admin-fane.is-aktiv {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+/* Skjul seksjoner som ikke er den aktive fanen. */
+.admin-section[data-fane] {
+  display: none;
+}
+
+.admin-section[data-fane].is-synlig {
+  display: block;
+}

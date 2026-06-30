@@ -134,7 +134,7 @@ app.post("/api/kreator/forespoersel", (req, res) => {
     return res.status(400).json({ feil: "Legg inn minst ett brukernavn (TikTok, Instagram, Snapchat eller YouTube)." });
   }
 
-  const lagret = lagreKreatorForespoersel({
+ const lagret = lagreKreatorForespoersel({
     navn: String(navn).trim(),
     epost: String(epost).trim(),
     telefon: String(telefon).trim(),
@@ -145,6 +145,20 @@ app.post("/api/kreator/forespoersel", (req, res) => {
     youtube: youtube || "",
     følgere: følgere || "",
     melding: melding || "",
+  });
+
+  sendTilSheets({
+    type: "creator",
+    navn: lagret.navn,
+    epost: lagret.epost,
+    telefon: lagret.telefon,
+    nisjer: valgteNisjer.join(" | "),
+    tiktok: lagret.tiktok,
+    instagram: lagret.instagram,
+    snapchat: lagret.snapchat,
+    youtube: lagret.youtube,
+    følgere: lagret.følgere,
+    melding: lagret.melding,
   });
 
   res.json({ ok: true, id: lagret.id });

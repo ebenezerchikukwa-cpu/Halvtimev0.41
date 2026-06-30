@@ -363,6 +363,155 @@ const loggInnSeksjon = document.getElementById("admin-logg-inn");
       }
     });
   }
+// ---- Om oss-redigering ---------------------------------------------------
 
+  let omossData = null;
+
+  async function lastOmOss() {
+    const beholder = document.getElementById("omoss-redigering");
+    if (!beholder) return;
+    try {
+      omossData = await fetchJSON("/api/omoss");
+    } catch {
+      beholder.innerHTML = '<p class="admin-empty">Kunne ikke laste Om oss.</p>';
+      return;
+    }
+    document.getElementById("omoss-juridisk").value = omossData.juridisk || "";
+    tegnOmOss();
+  }
+
+  function tegnOmOss() {
+    const beholder = document.getElementById("omoss-redigering");
+    beholder.innerHTML = "";
+
+    omossData.seksjoner.forEach((seksjon, sIndex) => {
+      const gruppe = document.createElement("div");
+      gruppe.className = "admin-group";
+
+      const tittel = document.createElement("h3");
+      tittel.textContent = seksjon.tittel;
+      gruppe.appendChild(tittel);
+
+      // Redigerbar seksjonstittel
+      const tittelFelt = document.createElement("div");
+      tittelFelt.className = "field";
+      tittelFelt.innerHTML = `<label>Seksjonstittel</label>`;
+      const tittelInput = document.createElement("input");
+      tittelInput.value = seksjon.tittel;
+      tittelInput.addEventListener("input", () => {
+        seksjon.tittel = tittelInput.value;
+        tittel.textContent = tittelInput.value;
+      });
+      tittelFelt.appendChild(tittelInput);
+      gruppe.appendChild(tittelFelt);
+
+      // Spørsmålene
+      seksjon.sporsmaal.forEach((qa, qIndex) => {
+        const kort = document.createElement("div");
+        kort.style.cssText =
+          "border:1px solid var(--rule-soft); padding:14px; margin-bottom:14px; background:var(--paper);";
+
+        const sporsmaalFelt = document.createElement("div");
+        sporsmaalFelt.className = "field";
+        sporsmaalFelt.style.marginBottom = "10px";
+        sporsmaalFelt.innerHTML = `<label>Spørsmål</label>`;
+        const sInput = document.createElement("input");
+        sInput.value = qa.sporsmaal;
+        sInput.addEventListener("input", () => (qa.sporsmaal = sInput.value));
+        sporsmaalFelt.appendChild(sInput);
+        kort.appendChild(sporsmaalFelt);
+
+        const svarFelt = document.createElement("div");
+        svarFelt.className = "field";
+        svarFelt.style.marginBottom = "10px";
+        svarFelt.innerHTML = `<label>Svar</label>`;
+        const svarInput = document.createElement("textarea");
+        svarInput.rows = 3;
+        svarInput.value = qa.svar;
+        svarInput.addEventListener("input", () => (qa.svar = svarInput.value));
+        svarFelt.appendChild(svarInput);
+        kort.appendChild(svarFelt);
+
+        // Knapper: opp / ned / slett
+        const knappeRad = document.createElement("div");
+        knappeRad.style.cssText = "display:flex; gap:8px; flex-wrap:wrap;";
+
+        const opp = document.createElement("button");
+        opp.type = "button";
+        opp.className = "mini-knapp";
+        opp.textContent = "↑ Flytt opp";
+        opp.disabled = qIndex === 0;
+        opp.addEventListener("click", () => {
+          const liste = seksjon.sporsmaal;
+          [liste[qIndex - 1], liste[qIndex]] = [liste[qIndex], liste[qIndex - 1]];
+          tegnOmOss();
+        });
+
+        const ned = document.createElement("button");
+        ned.type = "button";
+        ned.className = "mini-knapp";
+        ned.textContent = "↓ Flytt ned";
+        ned.disabled = qIndex === seksjon.sporsmaal.length - 1;
+        ned.addEventListener("click", () => {
+          const liste = seksjon.sporsmaal;
+          [liste[qIndex + 1], liste[qIndex]] = [liste[qIndex], liste[qIndex + 1]];
+          tegnOmOss();
+        });
+
+        const slett = document.createElement("button");
+        slett.type = "button";
+        slett.className = "mini-knapp mini-knapp--fare";
+        slett.textContent = "Slett";
+        slett.addEventListener("click", () => {
+          if (!confirm("Slette dette spørsmålet?")) return;
+          seksjon.sporsmaal.splice(qIndex, 1);
+          tegnOmOss();
+        });
+
+        knappeRad.appendChild(opp);
+        knappeRad.appendChild(ned);
+        knappeRad.appendChild(slett);
+        kort.appendChild(knappeRad);
+
+        gruppe.appendChild(kort);
+      });
+
+      // Legg til nytt spørsmål i denne seksjonen
+      const leggTil = document.createElement("button");
+      leggTil.type = "button";
+      leggTil.className = "btn btn--ghost";
+      leggTil.textContent = "+ Nytt spørsmål";
+      leggTil.addEventListener("click", () => {
+        seksjon.sporsmaal.push({
+          id: "qa-" + Date.now(),
+          sporsmaal: "Nytt spørsmål",
+          svar: "Skriv svaret her.",
+        });
+        tegnOmOss();
+      });
+      gruppe.appendChild(leggTil);
+
+      beholder.appendChild(gruppe);
+    });
+  }
+
+  const omossLagreKnapp = document.getElementById("omoss-lagre");
+  if (omossLagreKnapp) {
+    omossLagreKnapp.addEventListener("click", async () => {
+      if (!omossData) return;
+      omossData.juridisk = document.getElementById("omoss-juridisk").value;
+      const lagretMsg = document.getElementById("omoss-lagret");
+      omossLagreKnapp.disabled = true;
+      try {
+        await fetchJSON("/api/omoss", { method: "POST", body: omossData });
+        lagretMsg.classList.add("is-visible");
+        setTimeout(() => lagretMsg.classList.remove("is-visible"), 2500);
+      } catch (err) {
+        alert(err.message);
+      } finally {
+        omossLagreKnapp.disabled = false;
+      }
+    });
+  }
   visAdminHvisInnlogget();
 });

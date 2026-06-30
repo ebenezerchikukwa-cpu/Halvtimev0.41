@@ -186,31 +186,85 @@ function lastAlt() {
   async function lastTabell(type) {
     if (type === "kreatorer") {
       const rader = await fetchJSON("/api/admin/forespoersler/kreatorer");
-      fyllTabell("tabell-kreatorer", rader, [
-        { felt: "opprettet", format: formatDato },
-        { felt: "navn" },
-        { felt: "epost" },
-        { felt: "telefon" },
-        { felt: "nisjer", format: formatListe },
-        { felt: "tiktok" },
-        { felt: "instagram" },
-        { felt: "snapchat" },
-        { felt: "youtube" },
-        { felt: "følgere" },
-        { felt: "melding" },
-      ]);
+      tegnKreatorKort(rader);
     } else {
       const rader = await fetchJSON("/api/admin/forespoersler/bedrifter");
-      fyllTabell("tabell-bedrifter", rader, [
-        { felt: "opprettet", format: formatDato },
-        { felt: "bedriftsnavn" },
-        { felt: "kontaktperson" },
-        { felt: "epost" },
-        { felt: "telefon" },
-        { felt: "nisjer", format: formatListe },
-        { felt: "melding" },
-      ]);
+      tegnBedriftKort(rader);
     }
+  }
+
+  function lagKortRad(nokkel, verdi, erLenke) {
+    if (!verdi) return "";
+    const innhold = erLenke
+      ? `<a href="${erLenke}${escapeHtml(verdi)}">${escapeHtml(verdi)}</a>`
+      : escapeHtml(verdi);
+    return `
+      <div class="foresp-kort__rad">
+        <span class="foresp-kort__nokkel">${nokkel}</span>
+        <span class="foresp-kort__verdi">${innhold}</span>
+      </div>`;
+  }
+
+  function lagNisjeMerker(nisjer) {
+    if (!Array.isArray(nisjer) || !nisjer.length) return "";
+    const merker = nisjer
+      .map((n) => `<span class="foresp-kort__nisje">${escapeHtml(n)}</span>`)
+      .join("");
+    return `<div class="foresp-kort__nisjer">${merker}</div>`;
+  }
+
+  function tegnKreatorKort(rader) {
+    const beholder = document.getElementById("kort-kreatorer");
+    beholder.innerHTML = "";
+    if (!rader.length) {
+      beholder.innerHTML = '<p class="admin-empty">Ingen forespørsler ennå.</p>';
+      return;
+    }
+    rader.forEach((r) => {
+      const kort = document.createElement("div");
+      kort.className = "foresp-kort";
+      kort.innerHTML = `
+        <div class="foresp-kort__topp">
+          <span class="foresp-kort__navn">${escapeHtml(r.navn || "—")}</span>
+          <span class="foresp-kort__dato">${formatDato(r.opprettet)}</span>
+        </div>
+        ${lagKortRad("E-post", r.epost, "mailto:")}
+        ${lagKortRad("Telefon", r.telefon, "tel:")}
+        ${lagKortRad("TikTok", r.tiktok)}
+        ${lagKortRad("Instagram", r.instagram)}
+        ${lagKortRad("Snapchat", r.snapchat)}
+        ${lagKortRad("YouTube", r.youtube)}
+        ${lagKortRad("Følgere", r.følgere)}
+        ${lagNisjeMerker(r.nisjer)}
+        ${r.melding ? `<div class="foresp-kort__melding">${escapeHtml(r.melding)}</div>` : ""}
+      `;
+      beholder.appendChild(kort);
+    });
+  }
+
+  function tegnBedriftKort(rader) {
+    const beholder = document.getElementById("kort-bedrifter");
+    beholder.innerHTML = "";
+    if (!rader.length) {
+      beholder.innerHTML = '<p class="admin-empty">Ingen forespørsler ennå.</p>';
+      return;
+    }
+    rader.forEach((r) => {
+      const kort = document.createElement("div");
+      kort.className = "foresp-kort";
+      kort.innerHTML = `
+        <div class="foresp-kort__topp">
+          <span class="foresp-kort__navn">${escapeHtml(r.bedriftsnavn || "—")}</span>
+          <span class="foresp-kort__dato">${formatDato(r.opprettet)}</span>
+        </div>
+        ${lagKortRad("Kontakt", r.kontaktperson)}
+        ${lagKortRad("E-post", r.epost, "mailto:")}
+        ${lagKortRad("Telefon", r.telefon, "tel:")}
+        ${lagNisjeMerker(r.nisjer)}
+        ${r.melding ? `<div class="foresp-kort__melding">${escapeHtml(r.melding)}</div>` : ""}
+      `;
+      beholder.appendChild(kort);
+    });
   }
 
   function fyllTabell(tbodyId, rader, kolonner) {

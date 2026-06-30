@@ -46,6 +46,7 @@ const PORT = process.env.PORT || 3000;
 const ADMIN_EPOST = (process.env.ADMIN_EPOST || "admin@halvtime.no").toLowerCase();
 const ADMIN_PASSORD = process.env.ADMIN_PASSORD || "halvtime567";
 const ADMIN_TILGANGSKODE = process.env.ADMIN_TILGANGSKODE || "ungezimbo567";
+const SHEETS_URL = process.env.SHEETS_URL || "";
 
 app.use(express.json());
 
@@ -90,7 +91,19 @@ function rensNisjer(valgte, annetTekst) {
   if (annet) gyldige.push("Annet: " + annet);
   return gyldige;
 }
-
+// Sender en kopi av en forespørsel til Google Sheets i bakgrunnen.
+// Feiler dette (Google nede, feil URL), logges det bare — brukeren og
+// admin-lagringen påvirkes ikke. Sheets er en ekstra trygghetskopi.
+function sendTilSheets(data) {
+  if (!SHEETS_URL) return;
+  fetch(SHEETS_URL, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data),
+  }).catch((feil) => {
+    console.error("[sheets] Kunne ikke sende til Google Sheets:", feil.message);
+  });
+}
 // ---------------------------------------------------------------------
 // Creator-forespørsel (åpen for alle, ingen innlogging)
 // ---------------------------------------------------------------------

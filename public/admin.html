@@ -72,9 +72,15 @@
           <button id="admin-logg-ut" type="button">Logg ut</button>
         </div>
       </div>
-
-      <!-- ============ STATISTIKK ============ -->
-      <section class="admin-section">
+<div class="admin-faner" id="admin-faner">
+        <button type="button" class="admin-fane is-aktiv" data-mal="statistikk">Statistikk</button>
+        <button type="button" class="admin-fane" data-mal="innsendinger">Innsendinger</button>
+        <button type="button" class="admin-fane" data-mal="minside">Min side</button>
+        <button type="button" class="admin-fane" data-mal="forside">Forside</button>
+        <button type="button" class="admin-fane" data-mal="omoss">Om oss</button>
+      </div>
+    <!-- ============ STATISTIKK ============ -->
+      <section class="admin-section is-synlig" data-fane="statistikk">
         <h2>Statistikk</h2>
 
         <div class="statgrid">
@@ -104,7 +110,7 @@
       </section>
 
       <!-- ============ INNSENDINGER ============ -->
-      <section class="admin-section">
+      <section class="admin-section" data-fane="innsendinger">
         <h2>Innsendinger</h2>
         <p class="lede" style="margin-bottom: 24px;">
           Last ned som CSV og åpne rett i Excel — eller se de siste innsendingene i listene under.
@@ -145,8 +151,8 @@
         </div>
       </section>
 
-      <!-- ============ MIN SIDE-TILGANGER ============ -->
-      <section class="admin-section">
+<!-- ============ MIN SIDE-TILGANGER ============ -->
+      <section class="admin-section" data-fane="minside">
         <h2>Min side-tilganger</h2>
         <p class="lede" style="margin-bottom: 24px;">
           Opprett en innlogging for en creator du har koblet på et oppdrag. La kode-feltet stå
@@ -202,7 +208,7 @@
         </div>
       </section>
 <!-- ============ OM OSS-SIDEN ============ -->
-      <section class="admin-section">
+<section class="admin-section" data-fane="omoss">
         <h2>Om oss-siden</h2>
         <p class="lede" style="margin-bottom: 24px;">
           Rediger spørsmål og svar på Om oss-siden. Du kan legge til, endre, flytte og slette
@@ -225,7 +231,7 @@
         </div>
       </section>
       <!-- ============ INNHOLD PÅ SIDEN ============ -->
-      <section class="admin-section">
+      <section class="admin-section" data-fane="forside">
         <h2>Innhold på siden</h2>
         <p class="lede" style="margin-bottom: 8px;">
           Endre tekstene som vises i boksene på siden. Husk å trykke "Lagre endringer" nederst.

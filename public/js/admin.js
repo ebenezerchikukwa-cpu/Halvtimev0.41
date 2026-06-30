@@ -514,5 +514,22 @@ function lastAlt() {
       }
     });
   }
+  // ---- Faner i admin -------------------------------------------------------
+
+  const fanerBeholder = document.getElementById("admin-faner");
+  if (fanerBeholder) {
+    const faner = fanerBeholder.querySelectorAll(".admin-fane");
+    const seksjoner = document.querySelectorAll(".admin-section[data-fane]");
+    faner.forEach((fane) => {
+      fane.addEventListener("click", () => {
+        const mal = fane.dataset.mal;
+        faner.forEach((f) => f.classList.toggle("is-aktiv", f === fane));
+        seksjoner.forEach((s) => {
+          s.classList.toggle("is-synlig", s.dataset.fane === mal);
+        });
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    });
+  }
   visAdminHvisInnlogget();
 });

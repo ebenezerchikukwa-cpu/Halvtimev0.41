@@ -95,6 +95,7 @@ function rensNisjer(valgte, annetTekst) {
 // Feiler dette (Google nede, feil URL), logges det bare — brukeren og
 // admin-lagringen påvirkes ikke. Sheets er en ekstra trygghetskopi.
 function sendTilSheets(data) {
+  console.log("[sheets] sendTilSheets kalt. URL satt:", Boolean(SHEETS_URL));
   if (!SHEETS_URL) return;
   fetch(SHEETS_URL, {
     method: "POST",

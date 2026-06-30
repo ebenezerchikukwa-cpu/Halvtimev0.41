@@ -106,13 +106,14 @@ const loggInnSeksjon = document.getElementById("admin-logg-inn");
     });
   }
 
-  function lastAlt() {
+function lastAlt() {
     lastInnholdSkjema();
     lastStatistikk();
     lastTabell("kreatorer");
     lastTabell("bedrifter");
     lastKontoer();
-  }
+    lastOmOss();
+  }  
 
   // ---- Innhold -----------------------------------------------------------
 

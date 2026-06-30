@@ -186,13 +186,23 @@ app.post("/api/bedrift/forespoersel", (req, res) => {
     return res.status(400).json({ feil: "Velg minst én type content (eller fyll inn “annet”)." });
   }
 
-  const lagret = lagreBedriftForespoersel({
+ const lagret = lagreBedriftForespoersel({
     bedriftsnavn: String(bedriftsnavn).trim(),
     kontaktperson: kontaktperson || "",
     epost: String(epost).trim(),
     telefon: String(telefon).trim(),
     nisjer: valgteNisjer,
     melding: melding || "",
+  });
+
+  sendTilSheets({
+    type: "bedrift",
+    bedriftsnavn: lagret.bedriftsnavn,
+    kontaktperson: lagret.kontaktperson,
+    epost: lagret.epost,
+    telefon: lagret.telefon,
+    nisjer: valgteNisjer.join(" | "),
+    melding: lagret.melding,
   });
 
   res.json({ ok: true, id: lagret.id });

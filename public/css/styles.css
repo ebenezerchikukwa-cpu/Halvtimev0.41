@@ -1442,3 +1442,94 @@ footer.sitefoot a {
 .admin-section[data-fane].is-synlig {
   display: block;
 }
+/* ---- Admin: innsendinger som kort-rutenett ------------------------------ */
+
+.kort-rutenett {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 14px;
+  margin-bottom: 32px;
+}
+
+.foresp-kort {
+  border: 1px solid var(--rule);
+  padding: 16px;
+  background: var(--panel);
+  font-size: 13px;
+}
+
+.foresp-kort__topp {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--rule);
+}
+
+.foresp-kort__navn {
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--ink);
+}
+
+.foresp-kort__dato {
+  font-size: 11px;
+  color: var(--ink-faint);
+  white-space: nowrap;
+}
+
+.foresp-kort__rad {
+  display: flex;
+  gap: 8px;
+  padding: 4px 0;
+  border-top: 1px solid var(--rule-soft);
+}
+
+.foresp-kort__rad:first-of-type {
+  border-top: none;
+}
+
+.foresp-kort__nokkel {
+  flex-shrink: 0;
+  width: 78px;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.foresp-kort__verdi {
+  color: var(--ink);
+  word-break: break-word;
+}
+
+.foresp-kort__verdi a {
+  text-decoration: underline;
+}
+
+.foresp-kort__nisjer {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid var(--rule-soft);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.foresp-kort__nisje {
+  font-size: 11px;
+  padding: 3px 8px;
+  background: var(--red-tint);
+  color: var(--red-dark);
+  border: 1px solid var(--red);
+}
+
+.foresp-kort__melding {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid var(--rule-soft);
+  color: var(--ink-soft);
+  font-style: italic;
+}

@@ -117,7 +117,6 @@ async function sendTilSheets(data) {
 // ---------------------------------------------------------------------
 
 app.post("/api/kreator/forespoersel", (req, res) => {
-  console.log("[test] creator-forespoersel-ruten ble truffet");
   const {
     navn, epost, telefon, nisjer, annet,
     tiktok, instagram, snapchat, youtube, følgere, melding,

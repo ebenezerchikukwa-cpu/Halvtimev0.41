@@ -94,16 +94,23 @@ function rensNisjer(valgte, annetTekst) {
 // Sender en kopi av en forespørsel til Google Sheets i bakgrunnen.
 // Feiler dette (Google nede, feil URL), logges det bare — brukeren og
 // admin-lagringen påvirkes ikke. Sheets er en ekstra trygghetskopi.
-function sendTilSheets(data) {
-  console.log("[sheets] sendTilSheets kalt. URL satt:", Boolean(SHEETS_URL));
-  if (!SHEETS_URL) return;
-  fetch(SHEETS_URL, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(data),
-  }).catch((feil) => {
-    console.error("[sheets] Kunne ikke sende til Google Sheets:", feil.message);
-  });
+async function sendTilSheets(data) {
+  console.log("[sheets] START. URL satt:", Boolean(SHEETS_URL));
+  if (!SHEETS_URL) {
+    console.log("[sheets] Ingen URL — hopper over.");
+    return;
+  }
+  try {
+    const svar = await fetch(SHEETS_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
+    const tekst = await svar.text();
+    console.log("[sheets] Google svarte:", svar.status, tekst);
+  } catch (feil) {
+    console.error("[sheets] FEIL ved sending:", feil.message);
+  }
 }
 // ---------------------------------------------------------------------
 // Creator-forespørsel (åpen for alle, ingen innlogging)

@@ -106,8 +106,10 @@ async function sendTilSheets(data) {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
     });
-    const tekst = await svar.text();
-    console.log("[sheets] Google svarte:", svar.status, tekst);
+  if (!svar.ok) {
+      const tekst = await svar.text();
+      console.error("[sheets] Google svarte uventet:", svar.status, tekst);
+    } 
   } catch (feil) {
     console.error("[sheets] FEIL ved sending:", feil.message);
   }

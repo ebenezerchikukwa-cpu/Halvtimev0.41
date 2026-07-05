@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /admin.html
+Disallow: /minside.html
+
+Sitemap: https://halvtime.no/sitemap.xml

@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="nb">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Markedsføringen har endret seg. Har bedriften din? | HALVTIME</title>
+<meta name="description" content="Nordmenn bruker to timer på sosiale medier hver dag. Slik når bedriften din dem med innhold som faktisk treffer: enkelt, rimelig, og med ekte skapere.">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="Markedsføringen har endret seg. Har bedriften din?">
+<meta property="og:description" content="Slik når bedriften din norske kunder der de faktisk er, på mobilen.">
+<meta property="og:url" content="https://halvtime.no/markedsforing-for-bedrifter">
+<meta property="og:image" content="https://halvtime.no/images/creator-hero.jpeg">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --ink:#111111;
+  --muted:#6b6b6b;
+  --white:#ffffff;
+  --red:#e60012;
+  --line:#ececec;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--white);
+  color:var(--ink);
+  font-family:'Aptos','Aptos Display',-apple-system,'Segoe UI',system-ui,sans-serif;
+  font-weight:400;
+  line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:800px;margin:0 auto;padding:0 28px}
+
+/* top bar */
+.topbar{border-bottom:2px solid var(--red)}
+.topbar .wrap{display:flex;align-items:center;justify-content:space-between;height:70px}
+.brand{
+  font-family:'Big Shoulders Display',sans-serif;
+  font-weight:800;font-size:26px;letter-spacing:.06em;
+  color:var(--ink);text-decoration:none;
+}
+.topbar nav a{
+  font-size:13px;letter-spacing:.03em;color:var(--muted);
+  text-decoration:none;margin-left:26px;
+}
+.topbar nav a:hover{color:var(--ink)}
+@media(max-width:560px){.topbar nav a:first-child{display:none}}
+
+/* hero */
+.hero{padding:76px 0 30px}
+.eyebrow{
+  font-size:13px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--red);font-weight:600;margin-bottom:26px;
+}
+h1{
+  font-family:'Aptos Display','Aptos','Segoe UI',sans-serif;
+  font-weight:700;
+  font-size:clamp(34px,5.4vw,54px);
+  line-height:1.08;
+  letter-spacing:-.02em;
+  color:var(--ink);
+  max-width:16ch;
+}
+.lede{margin-top:26px;font-size:19px;color:var(--ink);max-width:60ch}
+.lede + .lede{margin-top:18px}
+
+/* graphic */
+.figure{
+  margin:56px 0 20px;
+  padding:30px 0;
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+}
+.figure svg{width:100%;height:auto;display:block}
+.fig-cap{
+  text-align:center;font-size:13px;color:var(--muted);
+  margin-top:8px;letter-spacing:.02em;
+}
+
+/* sections */
+article{padding:24px 0 30px}
+section{padding:44px 0}
+section + section{border-top:1px solid var(--line)}
+h2{
+  font-family:'Aptos Display','Aptos','Segoe UI',sans-serif;
+  font-weight:700;
+  font-size:clamp(24px,3.6vw,32px);
+  line-height:1.12;
+  letter-spacing:-.01em;
+  color:var(--ink);
+  margin-bottom:20px;
+  padding-left:18px;
+  border-left:3px solid var(--red);
+}
+section > p{font-size:17px;margin-bottom:16px}
+section > p:last-child{margin-bottom:0}
+
+/* stat list */
+.stats{list-style:none;margin-top:8px}
+.stats li{
+  position:relative;
+  padding:18px 0 18px 30px;
+  border-bottom:1px solid var(--line);
+  font-size:17px;
+}
+.stats li:last-child{border-bottom:none}
+.stats li::before{
+  content:"";
+  position:absolute;left:0;top:27px;
+  width:12px;height:2px;background:var(--red);
+}
+.stats b{font-weight:700}
+
+/* pull */
+.pull{
+  font-family:'Aptos Display','Aptos','Segoe UI',sans-serif;
+  font-weight:600;
+  font-size:clamp(20px,2.8vw,24px);
+  line-height:1.3;
+  color:var(--ink);
+  padding:8px 0 8px 22px;
+  border-left:3px solid var(--red);
+  margin:6px 0;
+}
+
+/* cta */
+.cta{
+  border:1px solid var(--line);
+  border-top:3px solid var(--red);
+  padding:48px 40px;
+  margin-top:20px;
+}
+.cta h2{border-left:none;padding-left:0;margin-bottom:14px}
+.cta p{font-size:17px;max-width:56ch;margin-bottom:30px;color:#333}
+.btn{
+  display:inline-flex;align-items:center;gap:12px;
+  background:var(--red);color:#fff;text-decoration:none;
+  font-weight:600;font-size:15px;letter-spacing:.02em;
+  padding:16px 32px;
+  transition:opacity .16s;
+}
+.btn:hover{opacity:.88}
+.btn span{font-size:18px;line-height:1}
+
+/* footer */
+footer{border-top:2px solid var(--red);padding:36px 0 64px;margin-top:20px}
+footer .wrap{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.foot-brand{
+  font-family:'Big Shoulders Display',sans-serif;font-weight:800;
+  font-size:22px;letter-spacing:.06em;color:var(--ink);
+}
+footer a{font-size:13px;color:var(--muted);text-decoration:none}
+footer a:hover{color:var(--ink)}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap">
+    <a href="/index.html" class="brand">HALVTIME</a>
+    <nav>
+      <a href="/kreator-forespoersel.html">For creators</a>
+      <a href="/bedrift">Kom i gang</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="hero wrap">
+    <div class="eyebrow">For bedrifter</div>
+    <h1>Markedsføringen har endret seg. Har bedriften din?</h1>
+    <p class="lede">Før lagde en bedrift én TV-reklame, betalte for en sending klokka åtte, og alle som satt foran skjermen fikk nøyaktig det samme. Bonde, student, pensjonist, tenåring: samme reklame, samme øyeblikk. Du betalte for å nå massene, og håpet at noen av dem var riktige kunder.</p>
+    <p class="lede">Nå scroller de samme menneskene. Og på mobilen får ingen av dem det samme. Hver feed er skreddersydd, og innholdet møter folk der de allerede er. Det er ikke lenger kringkasting til alle, men en samtale med hver enkelt.</p>
+  </div>
+
+  <div class="wrap">
+    <div class="figure">
+      <svg viewBox="0 0 680 340" role="img" xmlns="http://www.w3.org/2000/svg">
+        <title>TV mot mobil: fra én reklame til alle, til ulikt innhold per person</title>
+        <desc>Venstre: én TV sender samme reklame til fire personer. Høyre: fire telefoner viser hvert sitt innhold.</desc>
+        <defs>
+          <marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </marker>
+        </defs>
+
+        <text x="165" y="30" text-anchor="middle" style="font-family:Aptos,'Segoe UI',sans-serif;font-size:11px;font-weight:600;letter-spacing:2px;fill:#9a9a9a">FØR</text>
+        <text x="165" y="52" text-anchor="middle" style="font-family:Aptos,'Segoe UI',sans-serif;font-size:16px;font-weight:700;fill:#111">Alle ser det samme</text>
+
+        <rect x="95" y="82" width="140" height="92" rx="4" fill="none" stroke="#111" stroke-width="1.5"/>
+        <rect x="107" y="94" width="116" height="68" rx="2" fill="#fafafa"/>
+        <circle cx="165" cy="120" r="13" fill="none" stroke="#e60012" stroke-width="1.5"/>
+        <rect x="140" y="140" width="50" height="5" rx="2.5" fill="#d0d0d0"/>
+        <rect x="150" y="150" width="30" height="5" rx="2.5" fill="#e0e0e0"/>
+        <rect x="157" y="174" width="16" height="9" fill="#111"/>
+        <rect x="143" y="183" width="44" height="5" rx="2.5" fill="#111"/>
+
+        <line x1="120" y1="218" x2="150" y2="200" stroke="#dcdcdc" stroke-width="1"/>
+        <line x1="150" y1="218" x2="158" y2="200" stroke="#dcdcdc" stroke-width="1"/>
+        <line x1="180" y1="218" x2="172" y2="200" stroke="#dcdcdc" stroke-width="1"/>
+        <line x1="210" y1="218" x2="180" y2="200" stroke="#dcdcdc" stroke-width="1"/>
+
+        <g fill="#c4c4c4"><circle cx="120" cy="230" r="7"/><rect x="113" y="239" width="14" height="16" rx="6"/></g>
+        <g fill="#c4c4c4"><circle cx="150" cy="230" r="7"/><rect x="143" y="239" width="14" height="16" rx="6"/></g>
+        <g fill="#c4c4c4"><circle cx="180" cy="230" r="7"/><rect x="173" y="239" width="14" height="16" rx="6"/></g>
+        <g fill="#c4c4c4"><circle cx="210" cy="230" r="7"/><rect x="203" y="239" width="14" height="16" rx="6"/></g>
+
+        <text x="165" y="288" text-anchor="middle" style="font-family:Aptos,'Segoe UI',sans-serif;font-size:13px;fill:#6b6b6b">Én melding, sendt til alle på likt</text>
+
+        <line x1="340" y1="70" x2="340" y2="290" stroke="#e60012" stroke-width="1" stroke-dasharray="3 5" opacity="0.5"/>
+
+        <text x="515" y="30" text-anchor="middle" style="font-family:Aptos,'Segoe UI',sans-serif;font-size:11px;font-weight:600;letter-spacing:2px;fill:#9a9a9a">NÅ</text>
+        <text x="515" y="52" text-anchor="middle" style="font-family:Aptos,'Segoe UI',sans-serif;font-size:16px;font-weight:700;fill:#111">Ingen ser det samme</text>
+
+        <g>
+          <rect x="402" y="86" width="46" height="84" rx="7" fill="none" stroke="#111" stroke-width="1.5"/>
+          <rect x="407" y="93" width="36" height="64" rx="3" fill="#fafafa"/>
+          <rect x="413" y="100" width="24" height="24" rx="3" fill="#e0e0e0"/>
+          <rect x="413" y="130" width="24" height="4" rx="2" fill="#d8d8d8"/>
+          <rect x="413" y="138" width="16" height="4" rx="2" fill="#e4e4e4"/>
+        </g>
+        <g>
+          <rect x="465" y="78" width="46" height="84" rx="7" fill="none" stroke="#111" stroke-width="1.5"/>
+          <rect x="470" y="85" width="36" height="64" rx="3" fill="#fafafa"/>
+          <circle cx="488" cy="108" r="11" fill="none" stroke="#e60012" stroke-width="1.5"/>
+          <rect x="476" y="130" width="24" height="4" rx="2" fill="#d8d8d8"/>
+          <rect x="476" y="138" width="14" height="4" rx="2" fill="#e4e4e4"/>
+        </g>
+        <g>
+          <rect x="528" y="86" width="46" height="84" rx="7" fill="none" stroke="#111" stroke-width="1.5"/>
+          <rect x="533" y="93" width="36" height="64" rx="3" fill="#fafafa"/>
+          <rect x="539" y="100" width="24" height="16" rx="2" fill="#d8d8d8"/>
+          <rect x="539" y="122" width="24" height="4" rx="2" fill="#e4e4e4"/>
+          <rect x="539" y="130" width="24" height="4" rx="2" fill="#e4e4e4"/>
+          <rect x="539" y="138" width="15" height="4" rx="2" fill="#d8d8d8"/>
+        </g>
+        <g>
+          <rect x="591" y="78" width="46" height="84" rx="7" fill="none" stroke="#111" stroke-width="1.5"/>
+          <rect x="596" y="85" width="36" height="64" rx="3" fill="#fafafa"/>
+          <path d="M602 140 L610 122 L617 133 L623 112 L628 140 Z" fill="#e0e0e0"/>
+          <rect x="602" y="102" width="10" height="4" rx="2" fill="#e60012"/>
+        </g>
+
+        <line x1="425" y1="218" x2="425" y2="172" stroke="#e60012" stroke-width="1.5" marker-end="url(#ar)" opacity="0.7"/>
+        <line x1="488" y1="218" x2="488" y2="164" stroke="#e60012" stroke-width="1.5" marker-end="url(#ar)" opacity="0.7"/>
+        <line x1="551" y1="218" x2="551" y2="172" stroke="#e60012" stroke-width="1.5" marker-end="url(#ar)" opacity="0.7"/>
+        <line x1="614" y1="218" x2="614" y2="164" stroke="#e60012" stroke-width="1.5" marker-end="url(#ar)" opacity="0.7"/>
+
+        <g fill="#8a8a8a"><circle cx="425" cy="230" r="7"/><rect x="418" y="239" width="14" height="16" rx="6"/></g>
+        <g fill="#8a8a8a"><circle cx="488" cy="230" r="7"/><rect x="481" y="239" width="14" height="16" rx="6"/></g>
+        <g fill="#8a8a8a"><circle cx="551" cy="230" r="7"/><rect x="544" y="239" width="14" height="16" rx="6"/></g>
+        <g fill="#8a8a8a"><circle cx="614" cy="230" r="7"/><rect x="607" y="239" width="14" height="16" rx="6"/></g>
+
+        <text x="515" y="288" text-anchor="middle" style="font-family:Aptos,'Segoe UI',sans-serif;font-size:13px;fill:#6b6b6b">Eget innhold, skreddersydd til hver enkelt</text>
+      </svg>
+    </div>
+  </div>
+
+  <article class="wrap">
+
+    <section>
+      <h2>Slik ser det norske markedet ut nå</h2>
+      <p>Dette er ikke en fjern, amerikansk trend. Det er hverdagen til kundene dine i Norge.</p>
+      <ul class="stats">
+        <li>Rundt <b>åtte av ti nordmenn</b> er innom sosiale medier hver eneste dag, en høyere andel enn både TV og strømming.</li>
+        <li><b>Snapchat</b> brukes daglig av over halvparten av befolkningen, og blant unge under 30 er tallene enda høyere.</li>
+        <li><b>TikTok</b> er blant de mest brukte sosiale mediene blant barn og unge i Norge. Dette er kundene, og kundenes barn, de neste årene.</li>
+        <li>Nordmenn bruker i snitt <b>nesten to timer</b> på sosiale medier daglig.</li>
+      </ul>
+      <p>Kort sagt: der folk faktisk befinner seg, er på mobilen. Ikke foran TV-en klokka åtte.</p>
+    </section>
+
+    <section>
+      <h2>Hvorfor dette haster for bedriften din</h2>
+      <p>Jo mer skreddersydd feeden blir, jo mindre tåler folk reklame som føles påklistret. En glanset reklamefilm midt i en strøm av ekte, personlig innhold skiller seg ut på feil måte. Den blir scrollet forbi.</p>
+      <p>Norske forbrukere er dessuten blant de mest reklamebevisste i verden. De ser med en gang forskjell på noe ekte og noe som bare prøver å selge. Derfor vinner autentisk innhold, laget av vanlige mennesker, over polerte reklamefilmer.</p>
+      <div class="pull">Bedrifter som henger med, treffer folk der de er. Bedrifter som ikke gjør det, betaler for å bli oversett.</div>
+      <p>Det gode er at du ikke trenger et stort byrå eller et enormt budsjett. Du trenger riktig innhold, laget av riktige folk, rettet mot de rette kundene.</p>
+    </section>
+
+    <section class="cta">
+      <h2>Vil du komme i gang uten stresset?</h2>
+      <p>HALVTIME har en rimelig og enkel ordning for norske bedrifter som vil ut på sosiale medier, eller som allerede er godt i gang og vil ha mer ut av det. Vi finner de riktige skaperne, sikrer kvaliteten og sørger for innhold som faktisk konverterer og gir rekkevidde. Dere sender inn en forespørsel, så ordner vi resten.</p>
+      <a href="/bedrift" class="btn">Kom i gang med HALVTIME <span>&rarr;</span></a>
+    </section>
+
+  </article>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-brand">HALVTIME</div>
+    <a href="/index.html">halvtime.no</a>
+  </div>
+</footer>
+
+</body>
+</html>
